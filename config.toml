@@ -1,7 +1,7 @@
 baseurl = "/"  # End your URL with a `/` trailing slash, e.g. `https://example.com/`.
 title = "TALETSKIY"
 copyright = "&copy; 2017 Konstantin Taletskiy"
-theme = "academic"
+theme = "hyde-hyde"
 enableEmoji = true
 footnotereturnlinkcontents = "<sup>^</sup>"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
