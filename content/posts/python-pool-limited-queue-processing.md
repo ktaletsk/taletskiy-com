@@ -11,7 +11,7 @@ While solving a problem I was confronted with a problem: I needed to build a lar
 
 ## Problem formulation
 
-![Problem formulation](/static/multiprocessing.png)
+![Problem formulation](/img/multiprocessing.png)
 
 In this toy problem we have a large array of parallel Processes writing results into the Queue. Alongside them, there is a single-threaded reader Process checking for new items in the Queue and assigning them to new Processes in the Pool, such that only a small fixed number of these Processes are running at the same time. Let's go through all the elements below.
 
