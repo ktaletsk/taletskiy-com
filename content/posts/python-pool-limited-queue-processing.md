@@ -17,6 +17,34 @@ In this toy problem we have a large array of parallel Processes writing results 
 
 ## `Process`
 
+For our large array of parallel threads on the left we are going to use `multithreading.Process()`. From official the reference: "`Process` objects represent activity that is run in a separate process". Starting a process(es) requires 2 things: the target function called and the `Process` call itself. Let's take a look:
+```
+from multiprocessing import Process
+
+def proc(i):
+    print(f'I am Process {i}')
+
+if __name__ ==  '__main__':
+    for i in range(10):
+        Process(target=proc, args=(i,)).start()
+```
+
+In the example above we created 10 `Process`es and launched them all at the same time. Each process is running an instance of `proc()` function with arguments taken from `arg`. Because the order of execution is not guaranteed, if we run it we get something like:
+```
+I am Process 6
+I am Process 2
+I am Process 0
+I am Process 3
+I am Process 7
+I am Process 4
+I am Process 8
+I am Process 1
+I am Process 5
+I am Process 9
+```
+
+Notice also the interesting syntax of the `args=(i,)`. `Process` requires that `args` is iterable, so changing it to `args=(i)` or `args=i` will lead to a `TypeError`.
+
 ## `Queue`
 
 ## `Pool`
