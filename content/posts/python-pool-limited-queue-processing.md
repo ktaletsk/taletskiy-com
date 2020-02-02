@@ -1,5 +1,5 @@
 ---
-date: 2020-02-01
+date: 2020-02-02
 linktitle: spectrum
 title: Pool Limited Queue Processing in Python
 weight: 10
@@ -7,7 +7,7 @@ categories: [ "algorithms" ]
 tags: ["Python", "Multiprocessing", "Queue", "Pool"]
 ---
 
-While solving a problem I was confronted with a problem: I needed to build a large number (order of 100) of Docker containers and then push them to the registry. Docker SDK for Python provided an excellent handle on that, and together with `multiprocessing` library allowed to parallelize the task very effectively. However, after testing the library I noticed that pushing multiple images to registry got stalled likely due to an overload of simultaneous uploads. In the empirical testing, I was only able to run 2-3 `docker push ...` commands before the process get stalled. At that point I decided to limit the simultaneous uploads to the small number of parallel threads, while still utilizing large number of threads to facilitate image builds. Combination of queue (`multiprocessing.Queue`) for passing down the work from builder threads to pusher threads and thread pool (`multiprocessing.Pool`) looked like a best candidate. Yet, there are small nuances and gaps in documentation which took me some time to understand (especially when using `multiprocessing` on Windows). Below, I provide a small tutorial on how to use these data structures and objects.
+I was recently confronted with a problem: I needed to build a large number (order of 100) of Docker containers and then push them to the registry. Docker SDK for Python provided an excellent handle on that, and together with `multiprocessing` library allowed to parallelize the task very effectively. However, after some initial testing I discovered that pushing multiple images to registry got stalled likely due to an overload of simultaneous uploads. In my testing, I was only able to run 2-3 simultaneous `docker push` commands until all the new ones I add got stalled. At that point I decided to limit the simultaneous uploads to the small number of parallel threads, while still utilizing large number of threads to facilitate image builds. Combination of queue (`multiprocessing.Queue`) for passing down the work from builder threads to pusher threads and thread pool (`multiprocessing.Pool`) looked like a best candidate. Yet, there are small nuances and gaps in documentation which took me some time to understand (especially when using `multiprocessing` on Windows). Below, I provide a small tutorial on how to use these data structures and objects.
 
 ## Problem formulation
 
@@ -201,14 +201,31 @@ I am Process 3
 
 ## Windows-related quirks
 
-I initially started working on this problem on Linux-based machine, but later continued on Windows. Unfortunately many of the things did not work immediately. Here are the things you need to know:
+I initially started working on this problem on a Linux-based machine, but later continued on Windows. Unfortunately many of the things did not work immediately. Here are the things you need to know:
 
-1. 
+1. Interrupting the program execution (Ctrl+C) will not work right away with the code above. The [workaround](https://stackoverflow.com/a/6191991) would be to add initializer workers:
+
+```
+def init_worker():
+    """
+    Pool worker initialization, required for keyboard interrupt on Windows
+    """
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
+
+p = Pool(num_readers, init_worker)
+```
+
+2. I was not able to run the code in Jupyter notebook on Windows, unless I move worker functions into separate `.py` file and import them to my notebook. Related to that, you won't be able to run the scripts above without wraping the main code into `if __name__ ==  '__main__':`
 
 ## Final Result
 
-Finally, we throw in some delays to emulate CPU-bound work and the solution is ready:
+As a finishing touches, let's add the following:
+- delays to imitate CPU-bound work on reader and writer
+- Exception handling when waiting for reader threads to finish
+- Configurable number of writer and reader threads
+- Some function documentation
 
+Here is the final result:
 ```
 from multiprocessing import Pool, Queue, Process, Manager
 import random
@@ -219,13 +236,13 @@ num_writers = 10
 num_readers = 3
 
 def writer(i,q):
-    # Imitate some work happening in writer
+    # Imitate CPU-bound work happening in writer
     delay = random.randint(1,10)
     time.sleep(delay)
 
-    # Put the result into the queue for workers to read
+    # Put the result into the queue
     t = time.time()
-    print(f'Write to queue from writer {i}: {t}')
+    print(f'I am writer {i}: {t}')
     q.put(t)
 
 def init_worker():
@@ -234,24 +251,25 @@ def init_worker():
     """
     signal.signal(signal.SIGINT, signal.SIG_IGN)
 
-def worker(i, q):
+def reader(i, q):
     """
-    Queue read worker
+    Queue reader worker
     """
 
-    # Read the first element of the queue
-    incoming = q.get()
+    # Read the top message from the queue
+    message = q.get()
 
-    # Sleep to imitate work
+    # # Imitate CPU-bound work happening in reader
     time.sleep(3)
-    print(f'Read from queue from reader {i}: {incoming}')
+    print(f'I am reader {i}: {message}')
 
 if __name__ ==  '__main__':
-    # Create manager (required for Windows)
+    # Create manager
     m = Manager()
     
     # Create multiprocessing queue
     q = m.Queue()
+
     # Create a group of parallel writers and start them
     for i in range(num_writers):
         Process(target=writer, args=(i,q,)).start()
@@ -263,13 +281,13 @@ if __name__ ==  '__main__':
     # Number of readers is matching the number of writers
     # However, the number of simultaneously running
     #   readers is constrained to the pool size
-    res = []
-    for i in range(num_writers):
-        res.append(p.apply_async(worker, (i,q,)))
+    readers = []
+    for i in range(10):
+        readers.append(p.apply_async(reader, (i,q,)))
     
     # Wait for the asynchrounous reader threads to finish
     try:
-        [r.get() for r in res]
+        [r.get() for r in readers]
     except:
         print('Interrupted')
         p.terminate()
@@ -278,25 +296,25 @@ if __name__ ==  '__main__':
 
 If you run it, you will get something like this:
 ```
-> python manager.py
-Write to queue from writer 5: 1580594068.821965
-Write to queue from writer 7: 1580594068.8229723
-Write to queue from writer 6: 1580594069.8156118
-Write to queue from writer 2: 1580594069.8246157
-Read from queue from reader 0: 1580594068.821965
-Read from queue from reader 1: 1580594068.8229723
-Write to queue from writer 3: 1580594071.830222
-Write to queue from writer 0: 1580594072.8017073
-Write to queue from writer 9: 1580594072.8187084
-Read from queue from reader 2: 1580594069.8156118
-Write to queue from writer 1: 1580594073.8059778
-Write to queue from writer 4: 1580594073.8359802
-Read from queue from reader 3: 1580594069.8246157
-Read from queue from reader 4: 1580594071.830222
-Read from queue from reader 5: 1580594072.8017073
-Write to queue from writer 8: 1580594077.834787
-Read from queue from reader 6: 1580594072.8187084
-Read from queue from reader 7: 1580594073.8059778
-Read from queue from reader 8: 1580594073.8359802
-Read from queue from reader 9: 1580594077.834787
+> python final.py
+I am writer 8: 1580659076.783544
+I am writer 3: 1580659076.783544
+I am reader 0: 1580659076.783544
+I am reader 1: 1580659076.783544
+I am writer 7: 1580659079.7990372
+I am writer 2: 1580659080.7971141
+I am writer 1: 1580659081.785277
+I am writer 4: 1580659082.7955923
+I am reader 2: 1580659079.7990372
+I am reader 3: 1580659080.7971141
+I am writer 6: 1580659083.800029
+I am writer 0: 1580659084.7862694
+I am reader 4: 1580659081.785277
+I am writer 9: 1580659085.7819643
+I am writer 5: 1580659085.7919443
+I am reader 5: 1580659082.7955923
+I am reader 6: 1580659083.800029
+I am reader 7: 1580659084.7862694
+I am reader 8: 1580659085.7819643
+I am reader 9: 1580659085.7919443
 ```
