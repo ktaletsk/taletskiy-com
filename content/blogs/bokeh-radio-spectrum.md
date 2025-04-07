@@ -1,19 +1,18 @@
 ---
 date: 2019-08-07
-linktitle: spectrum
 title: US Radio Spectrum Interactive Visualization with Python and BokehJS
-weight: 10
+summary: "Creating an interactive visualization of the US radio frequency spectrum using Python and BokehJS to explore frequency allocations across different bands, replacing static FCC infographics with a dynamic, color-coded interface."
 categories: [ "Vizualization" ]
 tags: ["Python", "Bokeh", "Radio spectrum"]
 ---
 
 So, I recently came across the Bokeh visualization library which uses Python to generated plots, but they are rendered in JS (like the most of the great _interactive_ visualization tools recently). I also noticed my fellow Twitter user took on the challenge to learn Bokeh over the next 30 days and post their results, so I decided to try as well. 
 
-{{< tweet 1158505934299312134 >}}
+<!-- {{< x user="ktaletsk" id="1158505934299312134" >}} -->
 
 I was hearing a lot about 5G coming to US soon and got curious about what frequencies will be used, and which are available. I did not know much about it so I searched and found this PDF infographics on FCCs website: https://www.ntia.doc.gov/files/ntia/publications/2003-allochrt.pdf. There were couple of problems with it: it was too small and non-interactive, so I decided to make a better one myself.
 
-{{< tweet 1158510457738670080 >}}
+<!-- {{< x user="ktaletsk" id="1158510457738670080" >}} -->
 
 
 The preliminary result is here:

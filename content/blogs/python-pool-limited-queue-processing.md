@@ -1,8 +1,7 @@
 ---
 date: 2020-02-02
-linktitle: spectrum
 title: Pool Limited Queue Processing in Python
-weight: 10
+summary: "A practical guide to using Python's multiprocessing library to implement a system where many parallel processes write to a queue, while a limited pool of workers processes those queue items. Includes solutions for common challenges and Windows-specific issues."
 categories: [ "algorithms" ]
 tags: ["Python", "Multiprocessing", "Queue", "Pool"]
 ---

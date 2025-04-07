@@ -1,0 +1,173 @@
+languageCode = 'en-us'
+
+title = "Konstantin Taletskiy"
+theme = "hugo-noir"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+name = "Konstantin Taletskiy"
+location = "SF Bay Area"
+description = "Technical Lead & AI Engineer with PhD in Scientific Computing. Building Data Science and AI tools, scalable ML pipelines, and interactive computing environments."
+profile_image = "/img/taletskiy.JPG"
+github = "https://github.com/ktaletsk"
+github_username = "ktaletsk"
+email = "konstantin@taletskiy.com"
+linkedin = "https://www.linkedin.com/in/taletskiy"
+linkedin_username = "taletskiy"
+
+[[params.certifications]]
+title = "AI agents in LangGraph"
+date = "2025"
+url = "https://learn.deeplearning.ai/accomplishments/83297115-6be9-489b-853f-0020b3d4af3a?usp=sharing"
+
+[[params.certifications]]
+title = "Introduction to Generative AI for Software Development"
+date = "2024"
+url = "https://coursera.org/share/d1544935900ff29a932b04b8e2562d66"
+
+[[params.certifications]]
+title = "Generative AI with Diffusion Models from NVIDIA"
+date = "2024"
+
+
+[[params.experience]]
+    company = "Axle Informatics"
+    role = "Development Manager"
+    period = "January 2025 - Present"
+    logo = "/img/company/axle.png"
+    description = "Leading development of interactive AI-driven notebook environments and data portals for federal clients."
+    responsibilities = [
+        "Leading development of interactive AI-driven notebook environments and data portals for federal clients",
+        "Overseeing 7 engineers cross-functional teams"
+    ]
+
+[[params.experience]]
+    company = "Orange Bricks"
+    role = "Independent Consultant"
+    period = "January 2024 - Present"
+    logo = "/img/company/orbrx.png"
+    description = "Developing AI-powered tools and JupyterLab extensions for startups."
+    responsibilities = [
+        "Developed AI-powered copilot JupyterLab extension for a YC-backed startup, including prompt engineering, intelligent code completions, debugging agents, and chat interfaces",
+        "Enhanced and supported JupyterLab extensions for a tech startup and set up CI/CD pipeline"
+    ]
+
+[[params.experience]]
+    company = "Axle Informatics"
+    role = "Technical Lead"
+    period = "January 2022 - Present"
+    logo = "/img/company/axle.png"
+    description = "Leading the development of Notebooks Hub - a collaborative Data Science platform combining JupyterLab, RStudio, and VSCode IDEs and dashboarding tools."
+    responsibilities = [
+        "Led the development of Notebooks Hub - a collaborative Data Science platform combining JupyterLab, RStudio, and VSCode IDEs and dashboarding tools such as Streamlit and Shiny",
+        "Created and maintained custom JupyterLab extensions for Data Scientists",
+        "Designed system architecture and managed team of 4 developers through implementation",
+        "Created productivity tools used across the company, including an AI agent for generating monthly status reports from Slack/Jira/GitHub activity",
+        "Mentored 15 trainees through collaborations with Georgia Tech, Cornell's Breakthrough AI Program, and NIH internships"
+    ]
+
+[[params.experience]]
+    company = "Axle Informatics"
+    role = "Data Engineer / Jupyter Developer"
+    period = "June 2021 - December 2021"
+    logo = "/img/company/axle.png"
+    description = "Building collaborative data science platform components."
+    responsibilities = [
+        "Contributed to development of Notebooks Hub platform",
+        "Created custom JupyterLab extensions",
+        "Implemented backend services for collaborative data science workflows"
+    ]
+
+[[params.experience]]
+    company = "De Novo Software"
+    role = "Algorithms Developer"
+    period = "August 2020 - May 2021"
+    logo = "/img/company/denovo.jpeg"
+    description = "Working in a regulated environment on an FDA-approved software medical device."
+    responsibilities = [
+        "Worked in a regulated environment on an FDA-approved software medical device",
+        "Contributed to developing a desktop application for analyzing flow cytometry data"
+    ]
+
+[[params.experience]]
+    company = "Axle Informatics"
+    role = "Full Stack Developer"
+    period = "January 2019 - July 2020"
+    logo = "/img/company/axle.png"
+    description = "Engineering high-performance cloud solutions and JupyterLab extensions."
+    responsibilities = [
+        "Engineered high-performance cloud deployment with shared distributed storage for image processing pipelines used by Data Scientists at NIH/NCATS",
+        "Contributed to JupyterLab extensions now widely used within developer communities (20k+ downloads monthly)",
+        "Designed a new framework for scheduling containerized analysis workflows on Kubernetes and HPC clusters"
+    ]
+
+[[params.experience]]
+    company = "Center for Molecular Study of Condensed Soft Matter"
+    role = "Research Assistant"
+    period = "2014 - 2018"
+    logo = "/img/company/iit.png"
+    description = "Created highly efficient GPU implementation of stochastic molecular model and automated computational experiment pipelines."
+    responsibilities = [
+        "Created highly efficient GPU implementation of stochastic molecular model which is up to 300x faster than the previous version",
+        "Automated pipeline for computational experiments, including job scheduling, data fitting, and analysis using Python and JupyterLab"
+    ]
+
+[[params.projects]]
+    title = "NCCV"
+    description = "Short course on computer vision and image processing using Numba+CUDA+OpenCV. Explores the building blocks of convolutional neural networks using Python in Jupyter Notebooks environment."
+    tech = "Python, Numba, CUDA, OpenCV, Jupyter"
+    image = "/img/projects/laramod.png"
+    link = "https://github.com/ktaletsk/NCCV"
+
+[[params.projects]]
+    title = "CuCalc"
+    description = "Docker container extending open source collaborative platform for computation and editing (CoCalc) with GPU support (CUDA) and libraries for machine learning."
+    tech = "Docker, CUDA, CoCalc"
+    image = "/img/projects/dera.png"
+    link = "https://github.com/ktaletsk/CuCalc"
+
+[[params.blogs]]
+    title = "Displaying real-time webcam stream in IPython at (relatively) high framerate"
+    date = "2018-04-15"
+    summary = "How to efficiently display webcam video feeds in Jupyter notebooks"
+    tags = ["Python", "Jupyter", "IPython", "Computer Vision"]
+    link = "https://medium.com/@kostal91/displaying-real-time-webcam-stream-in-ipython-at-relatively-high-framerate-8e67428ac522"
+
+[[params.blogs]]
+    title = "Create a desktop shortcut for JupyterLab on Windows"
+    date = "2020-02-03"
+    summary = "Simple guide for creating a convenient desktop shortcut to launch JupyterLab"
+    tags = ["JupyterLab", "Windows", "Productivity"]
+    link = "https://medium.com/@kostal91/create-a-desktop-shortcut-for-jupyterlab-on-windows-9fcabcfa0d3f"
+
+[[params.voluntary]]
+    role = "Maintainer"
+    organization = "Project Jupyter"
+    period = "2021 - Present"
+    description = "Maintaining first-party JupyterLab extensions, specifically JupyterLab-LaTeX, and collaborating with a team of Georgia Tech students to implement UI/UX improvements."
+
+[menu]
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 1
+  [[menu.main]]
+    name = "Experience"
+    url = "/experience/"
+    weight = 2
+  [[menu.main]]
+    name = "Projects"
+    url = "/projects/"
+    weight = 3
+  [[menu.main]]
+    name = "Blogs"
+    url = "/blogs/"
+    weight = 4
+  [[menu.main]]
+    name = "Contact Me"
+    url = "/contact/"
+    weight = 5
