@@ -127,7 +127,6 @@ date = "2024"
     title = "NCCV"
     description = "Short course on computer vision and image processing using Numba+CUDA+OpenCV. Explores the building blocks of convolutional neural networks using Python in Jupyter Notebooks environment."
     tech = "Python, Numba, CUDA, OpenCV, Jupyter"
-    image = "/img/projects/laramod.png"
     link = "https://github.com/ktaletsk/NCCV"
 
 [[params.projects]]
