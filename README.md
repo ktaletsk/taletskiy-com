@@ -1,4 +1,5 @@
 # Konstantin Taletskiy's Personal Website
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b3eb950e-d04c-4986-9c74-257ee928ceb2/deploy-status)](https://app.netlify.com/sites/konstantintaletskiy/deploys)
 
 This repository contains the source code for my personal website built with Hugo and the hugo-noir theme.
 
