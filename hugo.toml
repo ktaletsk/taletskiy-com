@@ -134,7 +134,7 @@ date = "2024"
     title = "CuCalc"
     description = "Docker container extending open source collaborative platform for computation and editing (CoCalc) with GPU support (CUDA) and libraries for machine learning."
     tech = "Docker, CUDA, CoCalc"
-    image = "/img/projects/dera.png"
+    image = "/img/projects/cucalc.png"
     link = "https://github.com/ktaletsk/CuCalc"
 
 [[params.blogs]]
