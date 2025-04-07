@@ -117,6 +117,13 @@ date = "2024"
     ]
 
 [[params.projects]]
+    title = "Auto Dashboards"
+    description = "A JupyterLab extension that converts Jupyter notebooks into interactive dashboards using Streamlit or Solara. Supports offline conversion with OpenAI-compatible LLMs, ideal for privacy-sensitive workflows."
+    tech = "Python, JupyterLab, Streamlit, Solara, OpenAI-compatible LLMs"
+    image = "/img/projects/auto-dashboards.png"
+    link = "https://github.com/orbrx/auto-dashboards"
+
+[[params.projects]]
     title = "NCCV"
     description = "Short course on computer vision and image processing using Numba+CUDA+OpenCV. Explores the building blocks of convolutional neural networks using Python in Jupyter Notebooks environment."
     tech = "Python, Numba, CUDA, OpenCV, Jupyter"
