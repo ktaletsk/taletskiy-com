@@ -1,6 +1,5 @@
 ---
 date: 2020-01-26
-linktitle: spectrum
 title: On Pytorch Tensors and Autograd
 summary: A brief explanation of PyTorch's Autograd system, computational graphs, and how gradient calculation works in deep learning frameworks.
 categories: [ "Machine Learning" ]
