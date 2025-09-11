@@ -5,7 +5,7 @@ layout: "about"
 ---
 ![Konstantin Taletskiy](/img/taletskiy.JPG)
 
-I'm a Software Engineer and Technical Lead with 6+ years of experience developing interactive notebook environments, AI-enhanced developer tools, collaborative data science platforms, and scalable backend systems. My background spans JupyterLab extensions, cloud architecture, and prompt engineering for AI applications.
+I'm an Engineering Manager and Technical Leader with over 6 years of experience driving development and deployment of interactive notebook environments, AI-powered developer tools, and scalable backend solutions. My background spans JupyterLab extensions, cloud architecture, and prompt engineering for AI applications.
 
 Throughout my career, I've led development teams, created developer productivity tools, and built platforms that enable data scientists to collaborate effectively. I'm passionate about solving complex technical challenges and pushing the boundaries of what's possible with modern technology.
 

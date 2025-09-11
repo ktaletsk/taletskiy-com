@@ -46,28 +46,40 @@ date = "2024"
     ]
 
 [[params.experience]]
+    company = "Leading Data Science Platform Company"
+    role = "TBA"
+    period = "September 2025 - Present"
+    logo = ""
+    description = "Contributing to technical innovation in the Data Science space."
+
+[[params.experience]]
     company = "Orange Bricks"
-    role = "Independent Consultant"
+    role = "Founder"
     period = "January 2024 - Present"
     logo = "/img/company/orbrx.png"
-    description = "Developing AI-powered tools and JupyterLab extensions for startups."
+    description = "Operating as product studio and consulting agency: building integrated JupyterLab platform while providing enterprise Jupyter/JupyterHub consulting services."
     responsibilities = [
-        "Developed AI-powered copilot JupyterLab extension for a YC-backed startup, including prompt engineering, intelligent code completions, debugging agents, and chat interfaces",
-        "Enhanced and supported JupyterLab extensions for a tech startup and set up CI/CD pipeline"
+        "Released Auto Dashboards, an open-source JupyterLab extension that converts notebooks into interactive, stakeholder-ready dashboards with side-by-side preview",
+        "Built JupyterLab Marketplace, an open-source, community-run extensions catalog surfacing real-world signals from PyPI (BigQuery) and GitHub to make discovery easier",
+        "Contributed core features to Mito AI (2.5k+ GitHub stars), including prompt engineering, intelligent code completions, debugging agents, and chat interfaces",
+        "Launched a cost-effective demo JupyterHub to showcase Mito AI, improving conversion from 2.59% to 11.2% by eliminating installation friction with pre-configured environment",
+        "Developing suite of JupyterLab extensions for enhanced developer productivity: smart workspace launcher, code quality and security tools, package management, API testing client, notebook governance, and containerized development environments"
     ]
 
 [[params.experience]]
     company = "Axle Informatics"
     role = "Technical Lead"
-    period = "January 2022 - Present"
+    period = "January 2022 - September 2025"
     logo = "/img/company/axle.png"
-    description = "Leading the development of Notebooks Hub - a collaborative Data Science platform combining JupyterLab, RStudio, and VSCode IDEs and dashboarding tools."
+    description = "Architected and led development of Notebooks Hub, a scalable multi-tenant platform integrating JupyterLab, RStudio, and VSCode IDEs with dashboards for 300+ federal researchers."
     responsibilities = [
-        "Led the development of Notebooks Hub - a collaborative Data Science platform combining JupyterLab, RStudio, and VSCode IDEs and dashboarding tools such as Streamlit and Shiny",
-        "Created and maintained custom JupyterLab extensions for Data Scientists",
-        "Designed system architecture and managed team of 4 developers through implementation",
-        "Created productivity tools used across the company, including an AI agent for generating monthly status reports from Slack/Jira/GitHub activity",
-        "Mentored 15 trainees through collaborations with Georgia Tech, Cornell's Breakthrough AI Program, and NIH internships"
+        "Architected and led development of Notebooks Hub, designing scalable multi-tenant architecture for collaborative Data Science platform integrating JupyterLab, RStudio, and VSCode IDEs with dashboards (Streamlit and Shiny), featuring reusable environments, secrets, and datasets sharable across users and applications",
+        "Delivered critical infrastructure for the Ask Athena AI project (NAIRR pilot), deploying custom JupyterHub on both NIH/NCATS and DoE/ORNL HPC clusters",
+        "Developed the public-facing N3C data portal website showcasing the National Clinical Cohort Collaborative's research capabilities, connecting 4,600+ researchers to the nation's largest centralized COVID-19 clinical data resource",
+        "Contributed to first-party JupyterLab extensions including JupyterLab-git (200k+ monthly downloads), served as maintainer for JupyterLab-LaTeX managing releases and community contributions",
+        "Led cross-functional teams of 4-7 engineers through full development lifecycle, from architecture design to production deployment on both cloud (Kubernetes) and HPC infrastructure",
+        "Mentored 15 engineers and students through collaborations with Georgia Tech, Cornell's Breakthrough AI Program, and NIH Internships, with focus on Jupyter ecosystem development",
+        "Pioneered AI-enhanced developer productivity tools, including LLM-powered agents for automated reporting from Slack/Jira/GitHub, demonstrating innovative approaches to research computing workflows"
     ]
 
 [[params.experience]]
