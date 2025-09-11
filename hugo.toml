@@ -33,18 +33,6 @@ url = "https://coursera.org/share/d1544935900ff29a932b04b8e2562d66"
 title = "Generative AI with Diffusion Models from NVIDIA"
 date = "2024"
 
-
-[[params.experience]]
-    company = "Axle Informatics"
-    role = "Development Manager"
-    period = "January 2025 - Present"
-    logo = "/img/company/axle.png"
-    description = "Leading development of interactive AI-driven notebook environments and data portals for federal clients."
-    responsibilities = [
-        "Leading development of interactive AI-driven notebook environments and data portals for federal clients",
-        "Overseeing 7 engineers cross-functional teams"
-    ]
-
 [[params.experience]]
     company = "Leading Data Science Platform Company"
     role = "TBA"
