@@ -11,7 +11,7 @@ Another JupyterCon is in the books!
 I have been a part of this community for the last 7 years, starting as a user, then building on top of Jupyter OSS projects and API and finally starting to contribute back to the core projects. I am really grateful for all the people I met along the way 🙏 
 This post is a reflection on my experience.
 
-![Me at JupyterCon 2025](/static/img/jupytercon/me-at-jupytercon2025.jpeg)
+![Me at JupyterCon 2025](/img/jupytercon/me-at-jupytercon2025.jpeg)
 
 ## Extension Development Tutorial
 
@@ -23,7 +23,7 @@ But when conference day rolled around, we were ready with a repo and a website c
 
 And I also happy to report that the entire session was recorded and uploaded to YouTube
 
-![JupyterCon 2025 Workshop](/static/img/jupytercon/IMG_1489.jpeg)
+![JupyterCon 2025 Workshop](/img/jupytercon/IMG_1489.jpeg)
 *Wrap up of the tutorial*
 
 The day went in a flash, but when it was all said and done we were able to see the impact clearly:
@@ -52,7 +52,7 @@ but it ended up being a talk. It so happened that Yuvi @ 2i2c was giving his own
 
 ## First conference as Anacondiac
 
-![Me at JupyterCon 2025, wearing Anaconda jacket and showing my badge](/static/img/jupytercon/IMG_1427.jpeg)
+![Me at JupyterCon 2025, wearing Anaconda jacket and showing my badge](/img/jupytercon/IMG_1427.jpeg)
 
 - Lessons presented from internal data by Jack Evans, 79% still prefer Notebook over Lab
 - Conversations at the booth
@@ -63,7 +63,7 @@ but it ended up being a talk. It so happened that Yuvi @ 2i2c was giving his own
 ## Venue
 Set in a beatiful San Diego, this was a great place to be in the beginning of the November. Paradise Point resort
 
-![San Diego Gaslamp District](/static/img/jupytercon/san-diego-gaslamp.jpeg)
+![San Diego Gaslamp District](/img/jupytercon/san-diego-gaslamp.jpeg)
 
 
 
@@ -74,13 +74,13 @@ Set in a beatiful San Diego, this was a great place to be in the beginning of th
 ## Community
 - Community engagement group, having ice cream together
 
-![Triage Call Crew at JupyterCon 2025](/static/img/jupytercon/triage-call-crew.jpeg)
+![Triage Call Crew at JupyterCon 2025](/img/jupytercon/triage-call-crew.jpeg)
 
 
 ## Jupyter Open Studio Day
 The fun did not stop after JupyterCon. Next Monday after the conference, Bloomberg [invited](https://go.bloomberg.com/attend/invite/jupyter-open-studio-day-november-10-2025/) everyone to their office to collaborate on Jupyter projects. There were many of the friendly faces who decided to make a trek from Southern California to the Bay while there were here for JupyterCon.
 
-![Jupyter Open Studio Day venue](/static/img/jupytercon/jupyter-open-studio-day.jpeg)
+![Jupyter Open Studio Day venue](/img/jupytercon/jupyter-open-studio-day.jpeg)
 
 
 Building on the momentum from the [Sprint Day](#sprint-day), I continued to explore those topics during the event.
@@ -92,8 +92,8 @@ Building on the momentum from the [Sprint Day](#sprint-day), I continued to expl
 - I had a chat with participants about how my Jupyter Marketplace can be useful for developers, what additional signals to include. I appreciated a suggestion from Ely @ Bloomberg to include a contribution activity indicator (number of commits/issues/PRs over some period of time).
 - I had an opportunity to help Hannah Chen @ Bloomberg to try and set up my [Auto Dashboards](https://github.com/orbrx/auto-dashboards) extension for generating Streamlit dashboards from Jupyter notebooks with live preview inside JupyterLab. She is `uv` user, so I learned how to do a development install using `uv` for JupyterLab extensions and updated my instructions.
 
-![View from Bloomberg office during Jupyter Open Studio Day](/static/img/jupytercon/bloomberg-office-view.jpeg)
+![View from Bloomberg office during Jupyter Open Studio Day](/img/jupytercon/bloomberg-office-view.jpeg)
 
 Huge thanks to Ely and Bloomberg for the invite and organizing the event for us!
 
-![San Francisco Ferry Building and a skyline](/static/img/jupytercon/sf-ferry-skyline.jpeg)
+![San Francisco Ferry Building and a skyline](/img/jupytercon/sf-ferry-skyline.jpeg)
