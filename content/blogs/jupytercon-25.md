@@ -15,7 +15,7 @@ This post is a reflection on my experience.
 
 ## Extension Development Tutorial
 
-One of the main ways I participated in the community always were JupyterLab extensions. This is what makes JupyterLab a next step after Notebook -- extensible architecture starting in the core itself (JupyterLab itself is built as a collection of extensions) and extending outward to allow exploring new ideas (collaboration, AI) and enhancing UX millions of user can rely upon (git, LaTeX, ipywidgets). As an extension author, contributor and maintainer, I've seen an explosion of AI-related ideas in Jupyter space. To better highlight the changes happening in the ecosystem, I built a community extension marketplace [labextensions.dev](https://labextensions.dev), which surfaces the most importants signals (categories, downloads, GitHub stars).
+One of the main ways I have always participated in the community is through JupyterLab extensions. This is what makes JupyterLab a next step after Notebook -- an extensible architecture starting in the core itself (JupyterLab is built as a collection of extensions) and extending outward to allow exploring new ideas (collaboration, AI) and enhancing UX millions of user can rely on (git, LaTeX, ipywidgets). As an extension author, contributor and maintainer, I've seen an explosion of AI-related ideas in Jupyter space. To better highlight the changes happening in the ecosystem, I built a community extension marketplace [labextensions.dev](https://labextensions.dev), which surfaces the most importants signals (categories, downloads, GitHub stars) to both users and developers.
 
 So, naturally, when JupyterCon CFP has opened, I submitted a workshop proposal combining the things I am most interested in: mentoring new generation of contributors and exploring AI coding tools in the ways they can be helpful (or not). Turns out, there were 3 more very similar workshops, so we combined forces with Rosio Reyes, Jason Grout and Matt Fisher and put together a full day tutorial! It was my first ever workshop I organized and I dove head first. It was no small feat, but our amazing team made it possible. I would also like to thank Lahari Chowtoori for providing AWS Bedrock credits for the participants, so they can use Claude Code; and Zach Sailer for agreeing to do a demo of Jupyter AI in action.
 
@@ -23,15 +23,20 @@ But when conference day rolled around, we were ready with a repo and a website c
 
 And I also happy to report that the entire session was recorded and uploaded to YouTube
 
-![JupyterCon 2025 Workshop](/img/jupytercon/IMG_1489.jpeg)
-*Wrap up of the tutorial*
+![JupyterCon Tutorial Room](/img/jupytercon/tutorial-room.jpeg)
+*Anatomy of the extension* 
 
 The day went in a flash, but when it was all said and done we were able to see the impact clearly:
 1. Participants were able to follow our instructions: we've seen [30 repos](https://github.com/topics/jupytercon2025) created during the tutorial 
 2. Participants enjoyed their experience and it felt empowering: in our DMs and public [posts](https://medium.com/womenintechnology/reflections-from-jupytercon-2025-8ace9e6b27ab)
-3. Some participants (especially on Windows) struggled with the environment installation steps. Extensions are using somewhat complex stack (Python, nodejs) and tools like `git` or `gh-cli` were hard to get working.
+3. Some participants (especially on Windows) struggled with the environment installation steps. Extensions are using somewhat complex stack (Python, nodejs) and tools like `git` or `gh-cli` were hard to get working. I would strongly consider creating a cloud-hosted backup option (i.e. GitHub Codespaces) to allow participants to have a ready-to-go environment if their local one is impossible to set up.
 4. Despite the difficulties, one of the attendees (Lingtao Xie @ Esri) have since created a brand new JupyterLab extension, [jupyterlab-todo-list](https://labextensions.dev/extensions/jupyterlab-todo-list)!
-5. We might have made the wrong assumptions about the number of participants and their interests. This is because we had a very limited data on the workshop participants from the conference organizers. Turns out, pre-registration for a particular workshop was not required, only for the workshop day. Additionally, badges were not scanned at the entrance to the room, so we have a limited ways of knowing who attended the session. I hope this will be addressed by the Jupyter Foundation when planning the next JupyterCon!
+5. We might also have made the wrong assumptions about the number of participants and their interests. This is because we had a very limited data on the workshop participants from the conference organizers. Turns out, pre-registration for a particular workshop was not required, only for the workshop day. Additionally, badges were not scanned at the entrance to the room, so we have a limited ways of knowing who attended the session. I hope this will be addressed by the Jupyter/Linux Foundation when planning the next JupyterCon!
+
+![JupyterCon 2025 Workshop](/img/jupytercon/IMG_1489.jpeg)
+*Wrap up of the tutorial*
+
+Overall, I had a great time teaching people and troubleshooting them as a TA. Most importantly, we laid a strong foundation for the next tutorials as we created a strong written guide alongside the presentation.
 
 ## JupyterHub satellites
 
@@ -60,10 +65,26 @@ but it ended up being a talk. It so happened that Yuvi @ 2i2c was giving his own
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7392660528554225664" height="1107" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
+![Anaconda × Deepnote Dinner at JupyterCon 2025](/img/jupytercon/anaconda-x-deepnote-dinner.jpg)
+*Dinner with the Deepnote team. Photo credit: Dawn Wages*
+
+
 ## Venue
 Set in a beatiful San Diego, this was a great place to be in the beginning of the November. Paradise Point resort
 
 ![San Diego Gaslamp District](/img/jupytercon/san-diego-gaslamp.jpeg)
+
+After wrapping up the conference, I spent some quality time exploring San Diego with my family. The San Diego Zoo was a favorite, with its lush landscapes, panda exhibit, and countless other animal encounters.
+
+![San Diego Zoo Adventure](/img/jupytercon/san-diego-zoo.jpeg)
+*San Diego Zoo was a big highlight for the family!*
+
+![San Diego Zoo Panda Exhibit](/img/jupytercon/san-diego-zoo-panda.jpeg)
+*The panda exhibit was my daughter's favorite*
+
+We also managed to visit Legoland, making the trip a perfect mix of work and play!
+
+
 
 
 
@@ -74,7 +95,11 @@ Set in a beatiful San Diego, this was a great place to be in the beginning of th
 ## Community
 - Community engagement group, having ice cream together
 
+![Presenting at JupyterCon 2025](/img/jupytercon/IMG_4026.jpeg)
+
+
 ![Triage Call Crew at JupyterCon 2025](/img/jupytercon/triage-call-crew.jpeg)
+
 
 
 ## Jupyter Open Studio Day
