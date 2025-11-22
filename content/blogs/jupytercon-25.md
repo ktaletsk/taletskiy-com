@@ -46,21 +46,20 @@ Overall, I had a great time teaching people and troubleshooting them as a TA. Mo
 {{< youtube MvZ-UUpqYMw >}}
 
 This is a talk I wanted to present for quite some time. 
-I had a chance to do a brief intro to Notebooks Hub approach to running non-notebook applications at the previous JupyterCon ([see blog post here](/blogs/jupytercon-23)),
-but the opportunity to present this in full detail came only after I left the company, 
-especially, because the topic found such strong interest in the community. 
-I am grateful to Axle for the opportunity to still present this material.
+I had a chance to do a brief intro to Notebooks Hub's approach to running non-notebook applications at the [previous JupyterCon](/blogs/jupytercon-23),
+but the opportunity to present this in full detail came only after I departed the team.
+I am grateful to Axle for the opportunity to still present this material, especially, because the topic found such strong interest in the community.
 
 Initially, I was planning to organize a Birds-of-a-Feather (BoF) session with JupyterHub deployers,
-but it ended up being a talk. It so happened that Yuvi @ 2i2c was giving his own perspective on 
+but it ended up being a talk. As it turned out, Yuvi Panda @ 2i2c was giving his own perspective ([Not Just Notebooks](https://jupytercon2025.sched.com/event/28H4l/not-just-for-notebooks-jupyterhub-in-2025-yuvi-p-2i2c)) on running applications, and his talk really echoed mine.
 
-"JupyterHub satellites" as I called them in this talk are really just applications other than Jupyter Notebook/Lab (RStudio, VSCode, Streamlit) orchestrated by JupyterHub. Even though, community had tools and recipes for a long time now, our approach was a little different, as we relied on standalone proxy (jhsingle_native_proxy). Both my and Yuvi's talk highlighted the need to update documentation and centralize the existing recipes (scripts, Docker images) to unlock even more satellites (i.e. [Marimo](https://marimo.io/), [Dyad](https://www.dyad.sh/), [Positron](https://github.com/posit-dev/positron), etc) by the community efforts.
+"JupyterHub satellites" as I call them, are really just applications other than Jupyter Notebook/Lab (RStudio, VSCode, Streamlit) orchestrated by JupyterHub. Even though the community had tools and recipes for a long time now, our approach was a little different, as we relied on standalone proxy (jhsingle_native_proxy) and standardized Docker containers. Both my and Yuvi's talk highlighted the need to update documentation and centralize the existing recipes (scripts, Docker images) to unlock even more satellites (i.e. [Marimo](https://marimo.io/), [Dyad](https://www.dyad.sh/), [Positron](https://github.com/posit-dev/positron), etc) by the community efforts.
 
-Recent updates to Jupyter Server proxy adding standalone mode, finally allowed for both standalone and integrated experiences in JupyterHub with the unified codebase under an official Jupyter repo. Since jhsingle_native_proxy was not actively maintained, it provides an off-ramp for existing users to join the community effort.
+Recent updates to Jupyter Server proxy adding standalone mode, finally allowed for both standalone and integrated experiences in JupyterHub with a unified codebase under an official Jupyter repo. Since jhsingle_native_proxy was not actively maintained, it provides an off-ramp for existing users to join the community effort.
 
-I heard back after my talk that there are users of JupyterHub interested in collaborating on open-sourcing the recipes for wrapping dashboards in Docker containers, which I hope to meet at Hub Dash on Dec 2-3.
+After my talk, I heard from JupyterHub users who are interested in collaborating on open-sourcing the recipes for wrapping dashboards in Docker containers. I hope to meet them at the [Hub Dash](https://jupyter.zulipchat.com/#narrow/channel/469744-jupyterhub/topic/Hub.20Dash.3A.202-3.20December.202025/near/554490824) on December 2-3.
 
-To wrap up, I would like to thank Chris Holdgraf and Yuvi Panda @ 2i2c for productive conversations on the topic before and after this talk!
+To wrap up, I would like to thank Yuvi Panda and Chris Holdgraf @ 2i2c for productive conversations on the topic before and after this talk!
 
 ## Favorite talks
 
@@ -160,6 +159,44 @@ We also managed to visit Legoland, making the trip a perfect mix of work and pla
 ## Sprint Day
 - Entire class of improvements I would like to make to JupyterLab file browser
 - Jupyter-AI v3, personas
+
+
+## Sprint Day
+
+The energy from the conference carried right into Sprint Day. Kirstie Whitaker and Zach Sailer kicked off the Sprints by opening the floor to anyone who has an idea on what to work together. One-by-one participants lined up to explain [their ideas](https://jupyter.zulipchat.com/#narrow/channel/531269-jupytercon/topic/.E2.9C.94.20sprints/with/558372277) in 30 seconds. The diversity of topics was remarkable, spanning from infrastructure challenges like Kubernetes directory management and JupyterHub cost optimization, to emerging AI integrations including browser-based AI and Jupyter AI coordination. Others focused on improving the documentation and publishing ecosystem with MyST and JupyterBook enhancements, while several participants tackled developer experience improvements from package audits to Git workflows. What struck me was the balance between technical infrastructure work and efforts to make Jupyter more accessible – WYSIWYG editors, better documentation, and collecting user stories to understand pain points. This breadth really showcased how the Jupyter ecosystem continues to evolve in multiple directions simultaneously, driven by the diverse needs of its community.
+
+### Tackling File Browser UX Challenges
+
+During the sprints, Andrew Thornton from Maxar raised an issue that resonated with many in the room: accidental drag-and-drop operations in JupyterLab can trigger large file copies with no visual feedback, no progress indicators, and no way to cancel them. His users were experiencing disk space issues and frozen servers from these unintentional operations.
+
+This sparked a productive discussion where Taran Rorem shared that he had already solved this issue with a custom extension that wraps the file browser's rename and move methods. He generously shared his approach using the `IFileBrowserFactory` interface, demonstrating how a relatively simple plugin could intercept these operations and add the missing feedback layer. We created a [Zulip topic](https://jupyter.zulipchat.com/#narrow/channel/531269-jupytercon/topic/Lab.20file.20browser.20drag-drop.20copy.20announcement) to continue tracking this issue and coordinate solutions.
+
+This conversation opened up a broader examination of file operations UX in JupyterLab. Through discussions with various users and my own analysis of issues and PRs, I identified several critical gaps:
+
+- **No cancellation for uploads**: Users accidentally uploading large files have no choice but to wait or kill the server
+- **Missing progress indicators**: File copies and moves happen silently, leaving users uncertain if operations are running or complete
+- **No operation queue visibility**: When handling multiple file operations, users can only see one progress bar at a time
+- **Risk of data corruption**: Users may shut down servers thinking operations are complete when they're still in progress
+
+These are some rough edges causing daily frustrations for users working with large datasets, remote servers, or production workflows. I compiled these user stories and began prototyping solutions, which I later presented at the Jupyter Open Studio Day at Bloomberg (more on that in a future post).
+
+### Jupyter AI v3 and Personas
+
+As we started working in groups, Jupyter AI took the stage to run through the setup and development of Personas for upcoming Jupyter AI v3. This topic was so popular was so popular, that it captivate room that morning, with multiple people (including myself) circling the stage with their chairs, laptops going full speed.
+
+I helped to start a [Zulip thread](https://jupyter.zulipchat.com/#narrow/channel/531269-jupytercon/topic/.E2.9C.94.20jupyter-ai-sprint/with/558372308) documenting the setup steps. While, still early days, the Persona approach is a very powerful concept, deliberately steering away from the currently popular "agent" approach of 2025, and combining traits of AI models and tools under one umbrella. If you want to learn more about the philosophy of Jupyter's approach to AI, watch an [interview with Brian Granger](https://thenewstack.io/from-physics-to-the-future-brian-granger-on-project-jupyter-in-the-age-of-ai/) on his vision for Jupyter, AI, and collaboration between humans and machines at TheNewStack.
+
+How does one create a Jupyter AI Persona? Turns out, it is very simple. You just need to write a Python class inheriting from the `BasePersona`, which overrides metadata `PersonaDefaults` (so that your Persona has its own name) and `process_message` which receives the input `Message` and sends it back to the chat `self.send_message`.
+
+With this simple API comes a great power and a great responsibility. 
+
+Power comes from not being tied to a particular AI framework (i.e. LangChain in JupyterLab AI v1 and v2). You can readily grab a simple SDK usage example from a provider's docs and add it to your Persona. Boom -- you've got yourself a support of a new provider in Jupyter AI. After seeing the demos, I immediately wanted to experiment with Cerebras AI, which enables very fast inference at 1000-2000 tokens/s.
+
+To explore the possible issues with a new API, I created a "hacker" persona that immediately deletes all .ipynb files in the directory. Sadly, it just worked, so the community needs to figure out our approach to this issue -- either enabling guardrails or building a trusted ecosystem of personas (after all users are always responsible for what they install with `pip intall`, this is no different).
+
+### Community Collaboration in Action
+
+What struck me most about Sprint Day was how quickly the community rallied around these seemingly "small" UX issues that have big impacts on daily productivity. Within hours, we had identified the problems, shared existing solutions, created tracking issues, and started planning implementations. This is the Jupyter community at its best – practitioners identifying real problems and immediately working together toward solutions.
 
 ## Community
 
