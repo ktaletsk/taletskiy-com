@@ -59,7 +59,7 @@ but it ended up being a talk. It so happened that Yuvi @ 2i2c was giving his own
 
 ## Favorite talks
 
-Even though I spent a lot of time in the tutorial room and in hallway conversations, I still managed to sneak out for a few talks that really stuck with me.
+Even though I spent a lot of time at the Anaconda booth and in hallway conversations, I still managed to sneak out for a few talks that really stuck with me.
 
 ## First conference as Anacondiac
 
@@ -96,6 +96,9 @@ Dawn’s talk did a great job walking through the journey from an exploratory no
 Kyle made a strong case for “moving notebooks to the server side” so that state lives independently of the browser tab. I loved seeing concrete demos of long‑running, resilient sessions and collaborative editing that felt much closer to how people actually work with notebooks day‑to‑day.
 
 ### Conversations at the booth
+
+![Anaconda crew at the booth](/img/jupytercon/at-anaconda-booth.jpeg)
+*Anaconda crew at the booth. Left to right: myself, Peter Wang, Dan Yeaw, Daina Bouquin, Rosio Reyes*
 
 Since conference was well attended by the local students (kudos to JupyterCon!), the topic of job searching advice came up a lot. As someone who mentored and interviewed engineers throughout my career, I highlighted the importance of pursuing personal projects and open source contributions. It really is such a powerful signal to hiring managers being able to see your ideas, contributions and code style in the open. I shared my favorite personal anecdote on how a very well crafted [Colab notebook](https://colab.research.google.com/github/ktaletsk/CPF/blob/master/1D_Example/CPF_1D_toy.ipynb) helped me get my first job after grad school. Below are some reflections of the students.
 
@@ -154,9 +157,14 @@ We also managed to visit Legoland, making the trip a perfect mix of work and pla
 - Jupyter-AI v3, personas
 
 ## Community
-- Community engagement group, having ice cream together
+
+Throughout the conference, I had a great time talking with members of Jupyter community, in particular our tutorial working group and [Community Building Working Group Members](https://jupyter.org/about#community-building-working-group-members), which (not surprisingly!) have a big intersection.
 
 ![Presenting at JupyterCon 2025](/img/jupytercon/IMG_4026.jpeg)
 
+![AN'S ELECTRONICS REPAIR ice cream shop](/img/jupytercon/ans-electronics-repair-shop.jpeg)
+*Decompressing after our workshop with Rosio Reyes and Matt Fisher at An's Electornics Repair ice cream shop. Not a real repair shop, but features menu items on a CRTs!*
+
+It was so awesome to meet the people who I regularly see on my screen, it GitHub issues, in Zoom calls!
 
 ![Triage Call Crew at JupyterCon 2025](/img/jupytercon/triage-call-crew.jpeg)
