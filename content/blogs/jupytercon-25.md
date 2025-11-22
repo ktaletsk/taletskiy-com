@@ -1,7 +1,7 @@
 ---
 title: "JupyterCon 2025 Reflections"
-date: 2025-11-10
-description: "JupyterCon reflections [+other fall 2025 Jupyter events]"
+date: 2025-11-06
+description: "Reflections on JupyterCon 2025"
 ---
 
 Another JupyterCon is in the books!
@@ -30,7 +30,10 @@ The day went in a flash, but when it was all said and done we were able to see t
 1. Participants were able to follow our instructions: we've seen [30 repos](https://github.com/topics/jupytercon2025) created during the tutorial 
 2. Participants enjoyed their experience and it felt empowering: in our DMs and public [posts](https://medium.com/womenintechnology/reflections-from-jupytercon-2025-8ace9e6b27ab)
 3. Some participants (especially on Windows) struggled with the environment installation steps. Extensions are using somewhat complex stack (Python, nodejs) and tools like `git` or `gh-cli` were hard to get working. I would strongly consider creating a cloud-hosted backup option (i.e. GitHub Codespaces) to allow participants to have a ready-to-go environment if their local one is impossible to set up.
-4. Despite the difficulties, one of the attendees (Lingtao Xie @ Esri) have since created a brand new JupyterLab extension, [jupyterlab-todo-list](https://labextensions.dev/extensions/jupyterlab-todo-list)!
+4. Despite the difficulties, one of the attendees (Lingtao Xie @ Esri) has since created a brand new JupyterLab extension, [jupyterlab-todo-list](https://labextensions.dev/extensions/jupyterlab-todo-list)! After the conference she mentioned that she enjoyed the workshop and invited feedback on the extension as she keeps learning React and TypeScript — exactly the kind of follow‑through and openness that makes this community so fun to work with.
+
+![Screenshot of jupyterlab-todo-list extension in action](/img/jupytercon/todo-extension-screenshot.png)
+
 5. We might also have made the wrong assumptions about the number of participants and their interests. This is because we had a very limited data on the workshop participants from the conference organizers. Turns out, pre-registration for a particular workshop was not required, only for the workshop day. Additionally, badges were not scanned at the entrance to the room, so we have a limited ways of knowing who attended the session. I hope this will be addressed by the Jupyter/Linux Foundation when planning the next JupyterCon!
 
 ![JupyterCon 2025 Workshop](/img/jupytercon/IMG_1489.jpeg)
@@ -54,25 +57,84 @@ but it ended up being a talk. It so happened that Yuvi @ 2i2c was giving his own
 - Hub Dash on Dec 2-3, collaborator willing to help in a free time
 - Thanks for Chris Holdgraph, Yuvi Panda and 2i2c
 
+## Favorite talks
+
+Even though I spent a lot of time in the tutorial room and in hallway conversations, I still managed to sneak out for a few talks that really stuck with me.
 
 ## First conference as Anacondiac
 
+This was my first conference as a OSS Jupyter developer working at Anaconda.
+
 ![Me at JupyterCon 2025, wearing Anaconda jacket and showing my badge](/img/jupytercon/IMG_1427.jpeg)
 
-- Lessons presented from internal data by Jack Evans, 79% still prefer Notebook over Lab
-- Conversations at the booth
-- Students at the conference, seeking advice
+We had a strong showing this year with talks across multiple tracks, sponsored talk at the Demo Theater and a delightful booth where I got a chance to meet so many of our users!
+
+### Demo: Usage Patterns in the Jupyter Ecosystem (Jack Evans, Anaconda)
+
+One of the most thought‑provoking sessions for me was Jack’s demo based on internal telemetry about how people actually use Jupyter. One stat that really stuck with me: based on Anaconda’s data, **around 79% of users still prefer the classic Notebook interface over JupyterLab**, which is a humbling reminder to keep investing in Notebook UX even as we push the ecosystem forward.
+
+You can dig into the full deck here:
+
+<iframe src="https://static.sched.com/hosted_files/jupytercon2025/98/Usage%20patterns%20in%20the%20Jupyter%20Ecosystem%20-%20JupyterCon%202025.pdf" width="100%" height="600" style="border:none;"></iframe>
+
+### Lightning Talk: What's New in Jupyter Frontends (Jeremy Tuloup, QuantStack & Rosio Reyes, Anaconda)
+
+{{< youtube xiPJDIbUU0o >}}
+
+This was a fast but very dense overview of what’s landing across JupyterLab and the classic Notebook experience. As someone who works on extensions, it was great to see how improvements in the Lab frontend keep flowing back into the “plain notebook” UX that so many users still rely on.
+
+### The Lifecycle of a Jupyter Environment: From Exploration To Production‑Grade Pipelines (Dawn Wages, Anaconda)
+
+{{< youtube G66iE89f450 >}}
+
+Dawn’s talk did a great job walking through the journey from an exploratory notebook to a maintainable ETL pipeline, with practical tooling like Papermill, nbconvert and PyScript/Voila/Panel in the mix. I especially appreciated the emphasis on planning for production from the start instead of treating “pipeline-izing” as an afterthought.
+
+### Runtime Agents: Unleashing Event Sourced Collaboration for Jupyter (Kyle Kelley, Anaconda)
+
+{{< youtube PzvUPHeD7Hs >}}
+
+Kyle made a strong case for “moving notebooks to the server side” so that state lives independently of the browser tab. I loved seeing concrete demos of long‑running, resilient sessions and collaborative editing that felt much closer to how people actually work with notebooks day‑to‑day.
+
+### Conversations at the booth
+
+Since conference was well attended by the local students (kudos to JupyterCon!), the topic of job searching advice came up a lot. As someone who mentored and interviewed engineers throughout my career, I highlighted the importance of pursuing personal projects and open source contributions. It really is such a powerful signal to hiring managers being able to see your ideas, contributions and code style in the open. I shared my favorite personal anecdote on how a very well crafted [Colab notebook](https://colab.research.google.com/github/ktaletsk/CPF/blob/master/1D_Example/CPF_1D_toy.ipynb) helped me get my first job after grad school. Below are some reflections of the students.
+
+- [Fariha Sheikh](https://www.linkedin.com/in/fariha-sheikh-usc/)'s reflections 👉 [View this post on LinkedIn](https://www.linkedin.com/feed/update/urn:li:share:7392660528554225664)
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7392660528554225664" height="1107" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+- [Gor Abaghyan](https://www.linkedin.com/in/abaghyangor/)'s experience. At the booth and later at Sprints, we talked through his [PokéAgent Challenge](https://pokeagent.github.io/) setup and I suggested Docker as a way to both debug and pick up a tool that would pay off later; after the conference he messaged that he’d built the `mgba` bindings from source, had the ReAct agent running, and completed about 30% of the run, describing it as a really great experience.
+
+### Exploring the city and connecting to fellow Anacondiacs
+
+As we wrapped each day, Anaconda team would pack into local restaraunt and invite fellow jovyans for a dinner and conversation about Jupyer, Python and Open Source
+
+![Dinner at El Agave with Jupyter community](/img/jupytercon/el-agave-dinner.jpeg)
+*El Agave dinner: A memorable night of with great food and amazing people from the Jupyter community.*
 
 ![Anaconda × Deepnote Dinner at JupyterCon 2025](/img/jupytercon/anaconda-x-deepnote-dinner.jpg)
 *Dinner with the Deepnote team. Photo credit: Dawn Wages*
 
+## Venue and city
+Set in a beatiful San Diego, this was a great place to be in the beginning of the November. Paradise Point resort did a great job creating such a welcoming experience. Continuing on JupyterCon 2023 success, this year catering was a perfect. Not only they provided breakfast and lunch, but the variety of snacks and deserts like no other conference!
 
-## Venue
-Set in a beatiful San Diego, this was a great place to be in the beginning of the November. Paradise Point resort
+![Conference lunch at JupyterCon 2025](/img/jupytercon/jupytercon-lunch.jpg)
+*Photo credit: Dawn Wages*
+
+![Paradise Point Resort beach at night](/img/jupytercon/IMG_1419.jpeg)
+*Paradise Point Resort beach at night – the end of a perfect JupyterCon day*
+
+![Paradise Point Resort at sunset](/img/jupytercon/IMG_1402.jpeg)
+*Ligths and decoration at Paradise Point Resort*
+
+![Paradise Point Resort grounds with conference banners](/img/jupytercon/IMG_1426.jpeg)
+*Flowers at Paradise Point Resort*
 
 ![San Diego Gaslamp District](/img/jupytercon/san-diego-gaslamp.jpeg)
+*San Diego Gaslamp District*
+
+![Ghirardeli store in Gaslamp district](/img/jupytercon/IMG_1530.jpeg)
+*Ghirardeli store in Gaslamp district*
 
 After wrapping up the conference, I spent some quality time exploring San Diego with my family. The San Diego Zoo was a favorite, with its lush landscapes, panda exhibit, and countless other animal encounters.
 
@@ -84,9 +146,8 @@ After wrapping up the conference, I spent some quality time exploring San Diego 
 
 We also managed to visit Legoland, making the trip a perfect mix of work and play!
 
-
-
-
+![Legoland Adventure](/img/jupytercon/legoland.jpeg)
+*We topped off the trip with a visit to Legoland!*
 
 ## Sprint Day
 - Entire class of improvements I would like to make to JupyterLab file browser
@@ -99,26 +160,3 @@ We also managed to visit Legoland, making the trip a perfect mix of work and pla
 
 
 ![Triage Call Crew at JupyterCon 2025](/img/jupytercon/triage-call-crew.jpeg)
-
-
-
-## Jupyter Open Studio Day
-The fun did not stop after JupyterCon. Next Monday after the conference, Bloomberg [invited](https://go.bloomberg.com/attend/invite/jupyter-open-studio-day-november-10-2025/) everyone to their office to collaborate on Jupyter projects. There were many of the friendly faces who decided to make a trek from Southern California to the Bay while there were here for JupyterCon.
-
-![Jupyter Open Studio Day venue](/img/jupytercon/jupyter-open-studio-day.jpeg)
-
-
-Building on the momentum from the [Sprint Day](#sprint-day), I continued to explore those topics during the event.
-
-- I exported all GitHub PRs and issues related to the filebrowser package ([`label:pkg:filebrowser`](https://github.com/jupyterlab/jupyterlab/issues?q=label%3Apkg%3Afilebrowser)) and ran analysis with Claude to find which of 800+ items might relevant to upload/copy/move UX. As a good first issue to solve (I've never contributed to the JupyterLab core!) I prototyped the button to cancel the file upload in JupyterLab. Below is my feature in action, but the full presentation is available [here](https://hackmd.io/@eqt0f1ICTrun-afIFzMReA/H1A0n1ggZg).
-
-<div style="position: relative; padding-bottom: 62.42774566473989%; height: 0;"><iframe src="https://www.loom.com/embed/3d0b8b1adcb744a19634e82d898691ee" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>
-
-- I had a chat with participants about how my Jupyter Marketplace can be useful for developers, what additional signals to include. I appreciated a suggestion from Ely @ Bloomberg to include a contribution activity indicator (number of commits/issues/PRs over some period of time).
-- I had an opportunity to help Hannah Chen @ Bloomberg to try and set up my [Auto Dashboards](https://github.com/orbrx/auto-dashboards) extension for generating Streamlit dashboards from Jupyter notebooks with live preview inside JupyterLab. She is `uv` user, so I learned how to do a development install using `uv` for JupyterLab extensions and updated my instructions.
-
-![View from Bloomberg office during Jupyter Open Studio Day](/img/jupytercon/bloomberg-office-view.jpeg)
-
-Huge thanks to Ely and Bloomberg for the invite and organizing the event for us!
-
-![San Francisco Ferry Building and a skyline](/img/jupytercon/sf-ferry-skyline.jpeg)
