@@ -30,7 +30,7 @@ The day went in a flash, but when it was all said and done we were able to see t
 1. Participants were able to follow our instructions: we've seen [30 repos](https://github.com/topics/jupytercon2025) created during the tutorial 
 2. Participants enjoyed their experience and it felt empowering: in our DMs and public [posts](https://medium.com/womenintechnology/reflections-from-jupytercon-2025-8ace9e6b27ab)
 3. Some participants (especially on Windows) struggled with the environment installation steps. Extensions are using somewhat complex stack (Python, nodejs) and tools like `git` or `gh-cli` were hard to get working. I would strongly consider creating a cloud-hosted backup option (i.e. GitHub Codespaces) to allow participants to have a ready-to-go environment if their local one is impossible to set up.
-4. Despite the difficulties, one of the attendees (Lingtao Xie @ Esri) has since created a brand new JupyterLab extension, [jupyterlab-todo-list](https://labextensions.dev/extensions/jupyterlab-todo-list)! After the conference she mentioned that she enjoyed the workshop and invited feedback on the extension as she keeps learning React and TypeScript — exactly the kind of follow‑through and openness that makes this community so fun to work with.
+4. Despite the difficulties, at least one of the attendees (Lingtao Xie @ Esri) has since created a brand new JupyterLab extension, [jupyterlab-todo-list](https://labextensions.dev/extensions/jupyterlab-todo-list)! After the conference she mentioned that she enjoyed the workshop and invited feedback on the extension as she keeps learning React and TypeScript — exactly the kind of follow‑through and openness that makes this community so fun to work with.
 
 ![Screenshot of jupyterlab-todo-list extension in action](/img/jupytercon/todo-extension-screenshot.png)
 
@@ -45,17 +45,22 @@ Overall, I had a great time teaching people and troubleshooting them as a TA. Mo
 
 {{< youtube MvZ-UUpqYMw >}}
 
-This is a talk I wanted to present for quite some years. 
+This is a talk I wanted to present for quite some time. 
 I had a chance to do a brief intro to Notebooks Hub approach to running non-notebook applications at the previous JupyterCon ([see blog post here](/blogs/jupytercon-23)),
-but the opportunity to present this came only after I left the company. I am grateful to Axle for the opportunity to still present this material.
-Especially, because the topic find such a big interest in a community. Initially, I was planning to organize BoF session with all JupyterHub deployers,
+but the opportunity to present this in full detail came only after I left the company, 
+especially, because the topic found such strong interest in the community. 
+I am grateful to Axle for the opportunity to still present this material.
+
+Initially, I was planning to organize a Birds-of-a-Feather (BoF) session with JupyterHub deployers,
 but it ended up being a talk. It so happened that Yuvi @ 2i2c was giving his own perspective on 
 
-- Reflections on Notebooks Hub experience
-- Transition to Jupyter Server proxy (standalone)
-- Desire to contribute back the solution for wrapping all the dashboards, etc. 
-- Hub Dash on Dec 2-3, collaborator willing to help in a free time
-- Thanks for Chris Holdgraph, Yuvi Panda and 2i2c
+"JupyterHub satellites" as I called them in this talk are really just applications other than Jupyter Notebook/Lab (RStudio, VSCode, Streamlit) orchestrated by JupyterHub. Even though, community had tools and recipes for a long time now, our approach was a little different, as we relied on standalone proxy (jhsingle_native_proxy). Both my and Yuvi's talk highlighted the need to update documentation and centralize the existing recipes (scripts, Docker images) to unlock even more satellites (i.e. [Marimo](https://marimo.io/), [Dyad](https://www.dyad.sh/), [Positron](https://github.com/posit-dev/positron), etc) by the community efforts.
+
+Recent updates to Jupyter Server proxy adding standalone mode, finally allowed for both standalone and integrated experiences in JupyterHub with the unified codebase under an official Jupyter repo. Since jhsingle_native_proxy was not actively maintained, it provides an off-ramp for existing users to join the community effort.
+
+I heard back after my talk that there are users of JupyterHub interested in collaborating on open-sourcing the recipes for wrapping dashboards in Docker containers, which I hope to meet at Hub Dash on Dec 2-3.
+
+To wrap up, I would like to thank Chris Holdgraf and Yuvi Panda @ 2i2c for productive conversations on the topic before and after this talk!
 
 ## Favorite talks
 
