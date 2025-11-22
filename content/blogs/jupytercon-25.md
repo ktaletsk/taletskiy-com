@@ -15,13 +15,13 @@ This post is a reflection on my experience.
 
 ## Extension Development Tutorial
 
-One of the main ways I have always participated in the community is through JupyterLab extensions. This is what makes JupyterLab a next step after Notebook -- an extensible architecture starting in the core itself (JupyterLab is built as a collection of extensions) and extending outward to allow exploring new ideas (collaboration, AI) and enhancing UX millions of user can rely on (git, LaTeX, ipywidgets). As an extension author, contributor and maintainer, I've seen an explosion of AI-related ideas in Jupyter space. To better highlight the changes happening in the ecosystem, I built a community extension marketplace [labextensions.dev](https://labextensions.dev), which surfaces the most importants signals (categories, downloads, GitHub stars) to both users and developers.
+One of the main ways I have always participated in the community is through JupyterLab extensions. This is what makes JupyterLab a next step after Notebook -- an extensible architecture starting in the core itself (JupyterLab is built as a collection of extensions) and extending outward to allow exploring new ideas (collaboration, AI) and enhancing UX millions of users can rely on (git, LaTeX, ipywidgets). As an extension author, contributor and maintainer, I've seen an explosion of AI-related ideas in Jupyter space. To better highlight the changes happening in the ecosystem, I built a community extension marketplace [labextensions.dev](https://labextensions.dev), which surfaces the most important signals (categories, downloads, GitHub stars) to both users and developers.
 
-So, naturally, when JupyterCon CFP has opened, I submitted a workshop proposal combining the things I am most interested in: mentoring new generation of contributors and exploring AI coding tools in the ways they can be helpful (or not). Turns out, there were 3 more very similar workshops, so we combined forces with Rosio Reyes, Jason Grout and Matt Fisher and put together a full day tutorial! It was my first ever workshop I organized and I dove head first. It was no small feat, but our amazing team made it possible. I would also like to thank Lahari Chowtoori for providing AWS Bedrock credits for the participants, so they can use Claude Code; and Zach Sailer for agreeing to do a demo of Jupyter AI in action.
+So, naturally, when the JupyterCon CFP opened, I submitted a workshop proposal combining the things I am most interested in: mentoring new generation of contributors and exploring AI coding tools in the ways they can be helpful (or not). Turns out, there were 3 more very similar workshops, so we combined forces with Rosio Reyes, Jason Grout and Matt Fisher and put together a full day tutorial! It was my first ever workshop I organized and I dove head first. It was no small feat, but our amazing team made it possible. I would also like to thank Lahari Chowtoori for providing AWS Bedrock credits for the participants, so they can use Claude Code; and Zach Sailer for agreeing to do a demo of Jupyter AI in action.
 
 But when conference day rolled around, we were ready with a repo and a website complete with all the steps. It is fully open source (MIT license) and will be available to the community for the time being. You can find the tutorial materials here: [jupytercon.github.io/jupytercon2025-developingextensions](https://jupytercon.github.io/jupytercon2025-developingextensions/).
 
-And I also happy to report that the entire session was recorded and uploaded to YouTube
+And I'm also happy to report that the entire session was recorded and uploaded to YouTube
 
 ![JupyterCon Tutorial Room](/img/jupytercon/tutorial-room.jpeg)
 *Anatomy of the extension* 
@@ -34,12 +34,12 @@ The day went in a flash, but when it was all said and done we were able to see t
 
 ![Screenshot of jupyterlab-todo-list extension in action](/img/jupytercon/todo-extension-screenshot.png)
 
-5. We might also have made the wrong assumptions about the number of participants and their interests. This is because we had a very limited data on the workshop participants from the conference organizers. Turns out, pre-registration for a particular workshop was not required, only for the workshop day. Additionally, badges were not scanned at the entrance to the room, so we have a limited ways of knowing who attended the session. I hope this will be addressed by the Jupyter/Linux Foundation when planning the next JupyterCon!
+5. We might also have made the wrong assumptions about the number of participants and their interests. This is because we had very limited data on the workshop participants from the conference organizers. Turns out, pre-registration for a particular workshop was not required, only for the workshop day. Additionally, badges were not scanned at the entrance to the room, so we have limited ways of knowing who attended the session. I hope this will be addressed by the Jupyter/Linux Foundation when planning the next JupyterCon!
 
 ![JupyterCon 2025 Workshop](/img/jupytercon/IMG_1489.jpeg)
 *Wrap up of the tutorial*
 
-Overall, I had a great time teaching people and troubleshooting them as a TA. Most importantly, we laid a strong foundation for the next tutorials as we created a strong written guide alongside the presentation.
+Overall, I had a great time teaching people and troubleshooting with them as a TA. Most importantly, we laid a strong foundation for the next tutorials as we created a strong written guide alongside the presentation.
 
 ## JupyterHub satellites
 
@@ -114,7 +114,7 @@ Since conference was well attended by the local students (kudos to JupyterCon!),
 
 ### Exploring the city and connecting to fellow Anacondiacs
 
-As we wrapped each day, Anaconda team would pack into local restaraunt and invite fellow jovyans for a dinner and conversation about Jupyer, Python and Open Source
+As we wrapped each day, the Anaconda team would pack into local restaurant and invite fellow Jovians for a dinner and conversation about Jupyter, Python and Open Source.
 
 ![Dinner at El Agave with Jupyter community](/img/jupytercon/el-agave-dinner.jpeg)
 *El Agave dinner: A memorable night of with great food and amazing people from the Jupyter community.*
@@ -123,7 +123,7 @@ As we wrapped each day, Anaconda team would pack into local restaraunt and invit
 *Dinner with the Deepnote team. Photo credit: Dawn Wages*
 
 ## Venue and city
-Set in a beatiful San Diego, this was a great place to be in the beginning of the November. Paradise Point resort did a great job creating such a welcoming experience. Continuing on JupyterCon 2023 success, this year catering was a perfect. Not only they provided breakfast and lunch, but the variety of snacks and deserts like no other conference!
+Set in beautiful San Diego, this was a great place to be in the beginning of the November. Paradise Point resort did a great job creating such a welcoming experience. Continuing on JupyterCon 2023 success, this year's catering was perfect. Not only they provided breakfast and lunch, but the variety of snacks and desserts like no other conference!
 
 ![Conference lunch at JupyterCon 2025](/img/jupytercon/jupytercon-lunch.jpg)
 *Photo credit: Dawn Wages*
@@ -132,7 +132,7 @@ Set in a beatiful San Diego, this was a great place to be in the beginning of th
 *Paradise Point Resort beach at night – the end of a perfect JupyterCon day*
 
 ![Paradise Point Resort at sunset](/img/jupytercon/IMG_1402.jpeg)
-*Ligths and decoration at Paradise Point Resort*
+*Lights and decorations at Paradise Point Resort*
 
 ![Paradise Point Resort grounds with conference banners](/img/jupytercon/IMG_1426.jpeg)
 *Flowers at Paradise Point Resort*
@@ -140,8 +140,8 @@ Set in a beatiful San Diego, this was a great place to be in the beginning of th
 ![San Diego Gaslamp District](/img/jupytercon/san-diego-gaslamp.jpeg)
 *San Diego Gaslamp District*
 
-![Ghirardeli store in Gaslamp district](/img/jupytercon/IMG_1530.jpeg)
-*Ghirardeli store in Gaslamp district*
+![Ghirardelli store in Gaslamp district](/img/jupytercon/IMG_1530.jpeg)
+*Ghirardelli store in Gaslamp district*
 
 After wrapping up the conference, I spent some quality time exploring San Diego with my family. The San Diego Zoo was a favorite, with its lush landscapes, panda exhibit, and countless other animal encounters.
 
@@ -158,7 +158,7 @@ We also managed to visit Legoland, making the trip a perfect mix of work and pla
 
 ## Sprint Day
 
-The energy from the conference carried right into Sprint Day. Kirstie Whitaker and Zach Sailer kicked off the Sprints by opening the floor to anyone who has an idea on what to work together. One-by-one participants lined up to explain [their ideas](https://jupyter.zulipchat.com/#narrow/channel/531269-jupytercon/topic/.E2.9C.94.20sprints/with/558372277) in 30 seconds. The diversity of topics was remarkable, spanning from infrastructure challenges like Kubernetes directory management and JupyterHub cost optimization, to emerging AI integrations including browser-based AI and Jupyter AI coordination. Others focused on improving the documentation and publishing ecosystem with MyST and JupyterBook enhancements, while several participants tackled developer experience improvements from package audits to Git workflows. What struck me was the balance between technical infrastructure work and efforts to make Jupyter more accessible – WYSIWYG editors, better documentation, and collecting user stories to understand pain points. This breadth really showcased how the Jupyter ecosystem continues to evolve in multiple directions simultaneously, driven by the diverse needs of its community.
+The energy from the conference carried right into Sprint Day. Kirstie Whitaker and Zach Sailer kicked off the Sprints by opening the floor to anyone who had an idea on what to work together. One-by-one participants lined up to explain [their ideas](https://jupyter.zulipchat.com/#narrow/channel/531269-jupytercon/topic/.E2.9C.94.20sprints/with/558372277) in 30 seconds. The diversity of topics was remarkable, spanning from infrastructure challenges like Kubernetes directory management and JupyterHub cost optimization, to emerging AI integrations including browser-based AI and Jupyter AI coordination. Others focused on improving the documentation and publishing ecosystem with MyST and JupyterBook enhancements, while several participants tackled developer experience improvements from package audits to Git workflows. What struck me was the balance between technical infrastructure work and efforts to make Jupyter more accessible – WYSIWYG editors, better documentation, and collecting user stories to understand pain points. This breadth really showcased how the Jupyter ecosystem continues to evolve in multiple directions simultaneously, driven by the diverse needs of its community.
 
 ### Tackling File Browser UX Challenges
 
@@ -177,7 +177,7 @@ These are some rough edges causing daily frustrations for users working with lar
 
 ### Jupyter AI v3 and Personas
 
-As we started working in groups, Jupyter AI took the stage to run through the setup and development of Personas for upcoming Jupyter AI v3. This topic was so popular was so popular, that it captivate room that morning, with multiple people (including myself) circling the stage with their chairs, laptops going full speed.
+As we started working in groups, Jupyter AI took the stage to run through the setup and development of Personas for upcoming Jupyter AI v3. This topic was so popular that it captivated the room that morning, with multiple people (including myself) circling the stage with their chairs, laptops going full speed.
 
 I helped to start a [Zulip thread](https://jupyter.zulipchat.com/#narrow/channel/531269-jupytercon/topic/.E2.9C.94.20jupyter-ai-sprint/with/558372308) documenting the setup steps. While, still in their early days, the Persona approach is a very powerful concept, deliberately steering away from the currently popular "agent" approach of 2025, and combining traits of AI models and tools under one umbrella. If you want to learn more about the philosophy of Jupyter's approach to AI, watch an [interview with Brian Granger](https://thenewstack.io/from-physics-to-the-future-brian-granger-on-project-jupyter-in-the-age-of-ai/) on his vision for Jupyter, AI, and collaboration between humans and machines at TheNewStack.
 
@@ -209,11 +209,11 @@ Throughout the conference, I had a great time talking with members of Jupyter co
 ![AN'S ELECTRONICS REPAIR ice cream shop](/img/jupytercon/ans-electronics-repair-shop.jpeg)
 *Decompressing after our workshop with Rosio Reyes and Matt Fisher at An's Electornics Repair ice cream shop. Not a real repair shop, but features menu items on a CRTs!*
 
-It was so awesome to meet the people who I regularly see on my screen, it GitHub issues, in Zoom calls!
+It was so awesome to meet the people whom I regularly see on my screen, in GitHub issues, in Zoom calls!
 
 ![Triage Call Crew at JupyterCon 2025](/img/jupytercon/triage-call-crew.jpeg)
 
-And of course, it was such a priviledge to shake hands and talk to the Project Jupyter leaders and creators:  Fernando Pérez, Brian Granger, Min Ragan-Kelley and many others.
+And of course, it was such a privilege to shake hands and talk to the Project Jupyter leaders and creators:  Fernando Pérez, Brian Granger, Min Ragan-Kelley and many others.
 
 ![At JupyterCon with Brian Granger, Sylvain Corlay and Jason Weill in the back](/img/jupytercon/IMG_1525.jpeg)
 *At JupyterCon with Brian Granger, Sylvain Corlay and Jason Weill in the back*
