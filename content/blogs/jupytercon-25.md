@@ -187,7 +187,14 @@ With this simple API comes a great power and a great responsibility.
 
 Power comes from not being tied to a particular AI framework (i.e. LangChain in JupyterLab AI v1 and v2). You can readily grab a simple SDK usage example from a provider's docs and add it to your Persona. Boom -- you've got yourself a support of a new provider in Jupyter AI. After seeing the demos, I immediately wanted to experiment with Cerebras AI, which enables very fast inference at 1000-2000 tokens/s.
 
-To explore the possible issues with a new API, I created a "hacker" persona that immediately deletes all .ipynb files in the directory. Sadly, it just worked, so the community needs to figure out our approach to this issue -- either enabling guardrails or building a trusted ecosystem of personas (after all users are always responsible for what they install with `pip intall`, this is no different).
+To explore the possible issues with a new API, I created a silly "hacker" persona that immediately deletes all .ipynb files in the directory when mentioned. Sadly, it just worked, so the community needs to figure out our approach to this issue -- either enabling guardrails or building a trusted ecosystem of personas (after all users are always responsible for what they install with `pip intall`, this is no different).
+
+<video controls width="700">
+  <source src="https://jupyter.zulipchat.com/user_uploads/1430/6PB3qgncf87SuoxC-rtgGukO/h4cker-persona.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+*Demo of the "hacker" persona in action*
+
 
 ### Community Collaboration in Action
 
