@@ -1,7 +1,22 @@
-languageCode = 'en-us'
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
 
 title = "Konstantin Taletskiy"
 theme = "hugo-noir"
+
+# Language configuration
+[languages]
+  [languages.en]
+    languageCode = "en-us"
+    languageName = "English"
+    weight = 1
+    title = "Konstantin Taletskiy"
+    
+  [languages.ru]
+    languageCode = "ru-ru"
+    languageName = "Русский"
+    weight = 2
+    title = "Константин Талецкий"
 
 [markup]
   [markup.goldmark]
