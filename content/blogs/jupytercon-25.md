@@ -173,3 +173,8 @@ Throughout the conference, I had a great time talking with members of Jupyter co
 It was so awesome to meet the people who I regularly see on my screen, it GitHub issues, in Zoom calls!
 
 ![Triage Call Crew at JupyterCon 2025](/img/jupytercon/triage-call-crew.jpeg)
+
+And of course, it was such a priviledge to shake hands and talk to the Project Jupyter leaders and creators:  Fernando Pérez, Brian Granger, Min Ragan-Kelley and many others.
+
+![At JupyterCon with Brian Granger, Sylvain Corlay and Jason Weill in the back](/img/jupytercon/IMG_1525.jpeg)
+*At JupyterCon with Brian Granger, Sylvain Corlay and Jason Weill in the back*
