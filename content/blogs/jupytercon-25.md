@@ -65,6 +65,8 @@ To wrap up, I would like to thank Yuvi Panda and Chris Holdgraf @ 2i2c for produ
 
 Even though I spent a lot of time at the Anaconda booth and in hallway conversations, I still managed to sneak out for a few talks that really stuck with me.
 
+
+
 ## First conference as Anacondiac
 
 This was my first conference as a OSS Jupyter developer working at Anaconda.
