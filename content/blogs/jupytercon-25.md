@@ -157,11 +157,6 @@ We also managed to visit Legoland, making the trip a perfect mix of work and pla
 *We topped off the trip with a visit to Legoland!*
 
 ## Sprint Day
-- Entire class of improvements I would like to make to JupyterLab file browser
-- Jupyter-AI v3, personas
-
-
-## Sprint Day
 
 The energy from the conference carried right into Sprint Day. Kirstie Whitaker and Zach Sailer kicked off the Sprints by opening the floor to anyone who has an idea on what to work together. One-by-one participants lined up to explain [their ideas](https://jupyter.zulipchat.com/#narrow/channel/531269-jupytercon/topic/.E2.9C.94.20sprints/with/558372277) in 30 seconds. The diversity of topics was remarkable, spanning from infrastructure challenges like Kubernetes directory management and JupyterHub cost optimization, to emerging AI integrations including browser-based AI and Jupyter AI coordination. Others focused on improving the documentation and publishing ecosystem with MyST and JupyterBook enhancements, while several participants tackled developer experience improvements from package audits to Git workflows. What struck me was the balance between technical infrastructure work and efforts to make Jupyter more accessible – WYSIWYG editors, better documentation, and collecting user stories to understand pain points. This breadth really showcased how the Jupyter ecosystem continues to evolve in multiple directions simultaneously, driven by the diverse needs of its community.
 
