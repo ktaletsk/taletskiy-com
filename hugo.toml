@@ -26,7 +26,7 @@ theme = "hugo-noir"
 [params]
 name = "Konstantin Taletskiy"
 location = "SF Bay Area"
-description = "Technical Lead & AI Engineer with PhD in Scientific Computing. Building Data Science and AI tools, scalable ML pipelines, and interactive computing environments."
+description = "Senior Software Engineer at Anaconda with PhD in Scientific Computing. Contributing to Jupyter open source ecosystem, building Data Science and AI tools, and interactive computing environments."
 profile_image = "/img/taletskiy.JPG"
 github = "https://github.com/ktaletsk"
 github_username = "ktaletsk"
