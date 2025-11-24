@@ -23,6 +23,8 @@ description: "Размышления о JupyterCon 2025"
 
 И я также рад сообщить, что вся сессия была записана и загружена на YouTube
 
+{{< youtube _XX-s10tXv4 >}}
+
 ![Комната для туториала JupyterCon](/img/jupytercon/tutorial-room.jpeg)
 *Анатомия расширения* 
 
@@ -65,7 +67,14 @@ description: "Размышления о JupyterCon 2025"
 
 Хотя я провел много времени у стенда Anaconda и в коридорных разговорах, мне все же удалось выбраться на несколько докладов, которые действительно запомнились.
 
+{{< youtube hFe0k1JKQlk >}}
+*Невероятно вдохновляюще*
 
+{{< youtube uPRrfmmiFpA >}}
+*Очень полезные практические советы для начала вклада в OSS*
+
+{{< youtube IJO7_v7GEVc >}}
+*Не сравнивайте автомобиль F1 и внедорожник; Jupyter не является IDE*
 
 ## Первая конференция в качестве Anacondiac
 
@@ -219,4 +228,5 @@ Kyle убедительно аргументировал "перемещение
 
 ![На JupyterCon с Brian Granger, Sylvain Corlay и Jason Weill сзади](/img/jupytercon/IMG_1525.jpeg)
 *На JupyterCon с Brian Granger, Sylvain Corlay и Jason Weill сзади*
+
 

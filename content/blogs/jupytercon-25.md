@@ -67,7 +67,14 @@ To wrap up, I would like to thank Yuvi Panda and Chris Holdgraf @ 2i2c for produ
 
 Even though I spent a lot of time at the Anaconda booth and in hallway conversations, I still managed to sneak out for a few talks that really stuck with me.
 
+{{< youtube hFe0k1JKQlk >}}
+*Incredibly inspiring*
+
 {{< youtube uPRrfmmiFpA >}}
+*Very useful practical advice for breaking into OSS contributions*
+
+{{< youtube IJO7_v7GEVc >}}
+*Do not compare F1 car and SUV; Jupyter is not an IDE*
 
 ## First conference as Anacondiac
 
