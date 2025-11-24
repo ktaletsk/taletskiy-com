@@ -8,6 +8,7 @@ description: "Отчет о мероприятии Jupyter, организова
 
 ![Место проведения Jupyter Open Studio Day](/img/jupytercon/jupyter-open-studio-day.jpeg)
 
+<!--more-->
 
 Развивая импульс [Дня спринтов](#sprint-day), я продолжил исследовать эти темы во время мероприятия.
 

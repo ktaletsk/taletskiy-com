@@ -8,6 +8,7 @@ The fun did not stop after JupyterCon. Next Monday after the conference, Bloombe
 
 ![Jupyter Open Studio Day venue](/img/jupytercon/jupyter-open-studio-day.jpeg)
 
+<!--more-->
 
 Building on the momentum from the [Sprint Day](#sprint-day), I continued to explore those topics during the event.
 
