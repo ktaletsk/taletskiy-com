@@ -49,11 +49,11 @@ title = "Generative AI with Diffusion Models from NVIDIA"
 date = "2024"
 
 [[params.experience]]
-    company = "Leading Data Science Platform Company"
-    role = "TBA"
+    company = "Anaconda"
+    role = "Senior Software Engineer, OSS - Jupyter"
     period = "September 2025 - Present"
-    logo = ""
-    description = "Contributing to technical innovation in the Data Science space."
+    logo = "anaconda.png"
+    description = "Contributing to open source Jupyter projects including JupyterLab, and developing gator and jupyter-fsspec extensions to enhance the Jupyter ecosystem."
 
 [[params.experience]]
     company = "Orange Bricks"

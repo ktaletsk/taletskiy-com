@@ -11,4 +11,4 @@ As you'll discover, each role in my journey has been more than just a positionâ€
 
 I was fortunate enough to have opportunity to work with and contribute back to open-source tools, especially around Jupyter. Python community is near and dear to my heart.
 
-Take a look at my experience and reach out if you are interested in working with me
+Currently at Anaconda, I continue this tradition by contributing directly to the Jupyter ecosystem, working on core projects and extensions that empower data scientists and developers worldwide.
