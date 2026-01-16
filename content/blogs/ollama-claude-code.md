@@ -1,7 +1,7 @@
 ---
 title: Ollama Models in Claude Code
 date: 2026-01-15
-draft: true
+draft: false
 summary: "A little experiment evaluating local models for agentic tasks in Claude Code"
 tags: ["Claude Code", "Ollama", "Local models", "qwen", "devstral"]
 ---
