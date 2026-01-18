@@ -4,7 +4,11 @@ date: 2026-01-15
 draft: false
 summary: "A little experiment evaluating local models for agentic tasks in Claude Code"
 tags: ["Claude Code", "Ollama", "Local models", "qwen", "devstral"]
+image: /img/ollama-claude-code-hero.png
 ---
+
+![Claude Code running with devstral-128k via Ollama](/img/ollama-claude-code-hero.png)
+
 ## Intro
 
 Ollama just [released](https://github.com/ollama/ollama/releases/tag/v0.14.0) Anthropic API compatibility (support for the `/v1/messages` API) in January 2026, so I decided to try local models in Claude Code.
