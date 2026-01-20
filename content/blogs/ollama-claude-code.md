@@ -14,7 +14,7 @@ image: /img/ollama-claude-code-hero.png
 Ollama [released](https://github.com/ollama/ollama/releases/tag/v0.14.0) Anthropic API compatibility in January 2026, so I tested **18 local models** with Claude Code to find out which ones actually work for agentic coding tasks.
 
 > **TL;DR**
-> 1. **[devstral-small-2](https://ollama.com/library/devstral-small-2) is the winner** - best quality, fastest, zero interventions
+> 1. [`devstral-small-2:24b`](https://ollama.com/library/devstral-small-2) is the winner** - best quality, fastest, zero interventions
 > 2. **You MUST configure context window** - Ollama defaults to 4K; use 64K minimum
 > 3. **Expect 12-24 min for tasks that take ~2 min with Opus 4.5** - but it works!
 
@@ -28,64 +28,32 @@ Ollama [released](https://github.com/ollama/ollama/releases/tag/v0.14.0) Anthrop
 | Machine | MacBook Pro |
 | Chip | Apple M4 Pro |
 | RAM | 48 GB unified memory |
-| Ollama | v0.14.0 |
+| Ollama | v0.14.2 |
 
-### Configuration
+## Models
 
-Ollama docs outline how to set the endpoint, the key and a model. I prefer to continue using Bedrock API with Claude Code for most cases, but experiment with local models from time to time, so I created an alias for myself.
+Here's everything I tested, sorted by size:
 
-```bash
-# Add to ~/.zshrc
-
-alias claude-local='ANTHROPIC_BASE_URL=http://localhost:11434 ANTHROPIC_API_KEY=ollama CLAUDE_CODE_USE_BEDROCK=0 claude --model <model-name>'
-```
-
-## The 18 Models
-
-Here's everything I tested, grouped by outcome:
-
-### Winners (3)
-
-| Model | Size | Result | Why |
-|-------|------|--------|-----|
-| **devstral-small-2:24b** ⭐ | 15GB | ✅ Best | Fastest, highest quality, zero interventions |
-| **qwen3-coder:30b** | 18GB | ✅ Good | Reliable, adapted when tools failed |
-| **granite4:32b-a9b-h** | ~20GB | ✅ OK | Fast but lazy - minimal exploration |
-
-### Completed But Problematic (3)
-
-| Model | Size | Result | Issue |
-|-------|------|--------|-------|
-| **qwen3:30b** | 18GB | ⚠️ Hallucinated | Zero tool calls, fabricated everything |
-| **nemotron-3-nano:30b** | 24GB | ⚠️ Partial | Needed intervention to finish |
-| **gpt-oss:20b** | 14GB | ⚠️ Low quality | Fast but unreliable output |
-
-### Failed - Tool Issues (6)
-
-| Model | Size | Failure Mode |
-|-------|------|--------------|
-| **mistral-small3.2:24b** | 15GB | Hallucinated wrong parameter names |
-| **magistral:24b** | 14GB | Narrated tools in text, never invoked |
-| **cogito:32b** | 20GB | Memory thrashing, context stall |
-| **cogito:14b** | 9GB | Hallucinated non-existent tools |
-| **command-r:35b** | 19GB | Nested parameters in wrong schema |
-| **qwen2.5-coder:32b** | - | Stuck on Explore subagent |
-
-### Failed - No Tool Support (2)
-
-| Model | Issue |
-|-------|-------|
-| **deepseek-r1:32b** | [No tools in Ollama Anthropic API](https://github.com/ollama/ollama/issues/10935) |
-| **deepseek-coder-v2:16b** | No tools in Ollama Anthropic API |
-
-### Failed - Too Small (4)
-
-| Model | Size | Behavior |
-|-------|------|----------|
-| **functiongemma:270m** | 301MB | Refuses everything |
-| **granite4:3b** | 2.3GB | Hallucinates without tools |
-| **phi4-mini:3.8b** | 2.5GB | Invents fake tool names |
-| **rnj-1:8b** | 5.1GB | Silent - zero output |
+| Model | Size | Release | SWE-bench | Type |
+|-------|------|---------|-----------|------|
+| nemotron-3-nano:30b | 24GB | Dec 2025 | - | MoE |
+| cogito:32b | 20GB | Jul 2025 | - | Hybrid reasoning |
+| granite4:32b-a9b-h | ~20GB | Oct 2025 | - | General-purpose |
+| command-r:35b | 19GB | Mar 2024 | - | RAG-optimized |
+| qwen2.5-coder:32b | 19GB | Nov 2024 | 9.0% | Coding |
+| deepseek-r1:32b | 19GB | Jan 2025 | 41.4% | Reasoning |
+| qwen3-coder:30b | 18GB | Jul 2025 | 51.6% | Coding |
+| qwen3:30b | 18GB | Apr 2025 | - | General-purpose |
+| devstral-small-2:24b | 15GB | Dec 2025 | 68.0% | Agentic coding |
+| mistral-small3.2:24b | 15GB | Jun 2025 | - | General-purpose |
+| magistral:24b | 14GB | Jun 2025 | - | Reasoning |
+| gpt-oss:20b | 14GB | Aug 2025 | - | General-purpose |
+| cogito:14b | 9GB | Jul 2025 | - | Hybrid reasoning |
+| rnj-1:8b | 5.1GB | Dec 2025 | 20.8% | General-purpose |
+| phi4-mini:3.8b | 2.5GB | Feb 2025 | - | General-purpose |
+| granite4:3b | 2.1GB | Oct 2025 | - | General-purpose |
+| functiongemma:270m | 301MB | Dec 2025 | - | Function calling |
+| deepseek-coder-v2:16b | - | - | - | Coding (no tools) |
 
 ## Test Methodology
 
@@ -335,30 +303,48 @@ More context didn't help - it just gave the model more runway to keep failing th
 
 ## Results Summary
 
-| Model | Completed | Quality | Hallucinations | Time | Interventions |
-|-------|-----------|---------|----------------|------|---------------|
-| **devstral-small-2** | ✅ Yes | Excellent | None | 17 min | 0 |
-| qwen3-coder | ✅ Yes | Good | None | 24 min | 0 |
-| granite4:32b | ✅ Yes | Good | Minor* | ~7 min | 0 |
-| qwen3:30b | ⚠️ Technically | Poor | **Everything** | ~5 min | 0 |
-| nemotron-3-nano | ⚠️ Partial | Mixed | Yes (attempt 1) | - | 1+ |
-| gpt-oss:20b | ✅ Yes | Low | No | ~3 min | 1 |
-| qwen2.5-coder:32b | ❌ No | - | - | - | Stuck on Explore |
-| mistral-small3.2:24b | ❌ No | - | Tool params | - | Wrong tool schema |
-| magistral:24b | ❌ No | - | - | - | Narrated tools |
-| cogito:32b | ❌ No | - | - | - | Memory/context issues |
-| cogito:14b | ❌ No | - | Tools | ~8 min | Hallucinated WebSearch |
-| command-r:35b | ❌ No | - | - | 7-10 min | Nested tool params |
+### ✅ Worked
+
+| Model | Quality | Time | Notes |
+|-------|---------|------|-------|
+| **devstral-small-2** ⭐ | Excellent | 17 min | No hallucinations, no interventions |
+| qwen3-coder | Good | 24 min | Recovered after Explore failed |
+| granite4:32b | Good | ~7 min | Fast but lazy, minor hallucinations* |
+
+### ⚠️ Completed With Issues
+
+| Model | Quality | Time | Issue |
+|-------|---------|------|-------|
+| gpt-oss:20b | Low | ~3 min | Needed intervention |
+| nemotron-3-nano | Mixed | - | Hallucinated on first attempt |
+| qwen3:30b | Poor | ~5 min | Zero tool calls, fabricated everything |
+
+### ❌ Failed
+
+| Model | Time | Failure Mode |
+|-------|------|--------------|
+| qwen2.5-coder:32b | - | Stuck on Explore subagent |
+| mistral-small3.2:24b | - | Wrong tool parameter schema |
+| magistral:24b | - | Narrated tools instead of invoking |
+| cogito:32b | - | Memory thrashing, context stall |
+| cogito:14b | ~8 min | Hallucinated WebSearch tool |
+| command-r:35b | 7-10 min | Nested tool parameters |
+| deepseek-r1:32b | - | No tool support in Ollama |
+| deepseek-coder-v2:16b | - | No tool support in Ollama |
+| functiongemma:270m | - | Refuses everything |
+| granite4:3b | - | Hallucinates without tools |
+| phi4-mini:3.8b | - | Invents fake tool names |
+| rnj-1:8b | - | Silent, zero output |
 
 *granite4:32b referenced files it never verified existed
 
-**Winner: devstral-small-2** - Fastest, highest quality output, zero interventions, and smallest memory footprint among successful models.
+**Winner: devstral-small-2** - best quality, smallest footprint, zero interventions.
 
 ### Failure Mode Taxonomy
 
 Testing revealed distinct ways models fail at agentic tasks:
 
-| Failure Mode | Example | Cause |
+| Failure Mode | Example | Probable Cause |
 |--------------|---------|-------|
 | **Refuses** | functiongemma | Too conservative, confused by system prompts |
 | **Hallucinates content** | qwen3:30b, granite4:3b | Skips tools, fabricates output |
@@ -407,17 +393,6 @@ SWE-bench Verified is what everyone uses to evaluate agentic coding - 500 real G
 
 SWE-bench score also predicts Claude Code success: models without published scores aren't coding-focused and failed my tests.
 
-### devstral-small-2 vs qwen3-coder
-
-| Aspect | devstral-small-2 | qwen3-coder |
-|--------|------------------|-------------|
-| **Output Lines** | 180 | 86 |
-| **Time** | 17 min | 24 min |
-| **RAM Usage** | 15GB | 18GB |
-| **Architecture depth** | Detailed (functions, handlers) | High-level |
-| **Config examples** | Python code snippets | File references only |
-| **Tool confusion** | None | Tried Explore first |
-
 ### Model Outputs
 
 Compare the actual CLAUDE.md files generated by each model. Use the tabs to switch between models, or click the side-by-side button to compare them directly:
@@ -462,16 +437,6 @@ After all the testing, a pattern emerged for my 48GB machine:
 
 devstral-small-2 at 15GB hits this perfectly - leaves room for 128K context + OS + IDE without memory pressure.
 
-### Small Models Just Can't
-
-Models under ~15B parameters lack the reasoning to drive agentic tools. They either:
-- **Refuse** (functiongemma) - too conservative, confused by prompts
-- **Hallucinate content** (granite4:3b) - skip tools, fabricate everything
-- **Hallucinate tools** (phi4-mini) - invent non-existent tool names
-- **Go silent** (rnj-1:8b) - zero output
-
-Function calling skill without general reasoning is useless for agentic work.
-
 ## Conclusions
 
 Local models can do real agentic work now. devstral-small-2 completed the task reliably, with no hand-holding. It's slower than cloud (17 min vs 2 min), but it runs on my laptop with no API calls.
@@ -493,33 +458,18 @@ devstral-small-2 and qwen3-coder both work reliably. The tool calling infrastruc
 
 Most models can't finish multi-step agentic tasks without help. Context overflow causes hallucinations (fabricated URLs, wrong repo names). And 8-12x slower than cloud is hard to ignore.
 
-### Recommendation
+### Quick Start
 
-If you want to try local models with Claude Code today:
-
-**Quick setup (GUI method):**
-1. Install Ollama 0.14.0+
-2. Open Ollama settings → drag "Context length" slider to 64K
-3. `ollama pull devstral-small-2`
-4. Add alias to `~/.zshrc`:
 ```bash
-alias claude-local='ANTHROPIC_BASE_URL=http://localhost:11434 ANTHROPIC_API_KEY=ollama CLAUDE_CODE_USE_BEDROCK=0 claude --model devstral-small-2'
-```
-5. `source ~/.zshrc && claude-local`
-
-**Alternative (Modelfile method)** - for per-model control:
-```bash
-# 1. Install Ollama 0.14.0+
-
-# 2. Pull and configure devstral-small-2
+# 1. Install Ollama 0.14.0+ and pull devstral
 ollama pull devstral-small-2
-echo 'FROM devstral-small-2
-PARAMETER num_ctx 65536' | ollama create devstral-64k -f -
 
-# 3. Add alias
-echo "alias claude-local='ANTHROPIC_BASE_URL=http://localhost:11434 ANTHROPIC_API_KEY=ollama CLAUDE_CODE_USE_BEDROCK=0 claude --model devstral-64k'" >> ~/.zshrc
+# 2. Set context to 64K in Ollama settings (GUI slider)
 
-# 4. Use it
+# 3. Add alias to ~/.zshrc
+alias claude-local='ANTHROPIC_BASE_URL=http://localhost:11434 ANTHROPIC_API_KEY=ollama CLAUDE_CODE_USE_BEDROCK=0 claude --model devstral-small-2'
+
+# 4. Run it
 source ~/.zshrc
 claude-local
 ```
