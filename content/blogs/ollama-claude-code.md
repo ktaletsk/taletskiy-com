@@ -207,7 +207,7 @@ This is a different failure mode than hallucinating content (qwen3) or refusing 
 
 **Failed - narrated tools instead of invoking them.** This new Mistral reasoning model understood the task and knew which tools to use, but wrote out tool calls as text instead of actually executing them:
 
-```
+~~~
 "Let me use the Glob tool to find these patterns:
 
 ```bash
@@ -217,7 +217,7 @@ Glob pattern: .github/readme*
 ```
 
 Now that I have the relevant files, let's analyze..."
-```
+~~~
 
 Zero actual tool calls were made. The model described what it *would* do, assumed the tools had run, and proceeded to the next step. This suggests training on tool documentation without actual tool-use interactions.
 
