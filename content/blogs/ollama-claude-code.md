@@ -9,19 +9,17 @@ image: /img/ollama-claude-code-hero.png
 
 ![Claude Code running with devstral-128k via Ollama](/img/ollama-claude-code-hero.png)
 
-## Intro
+## I Tested 18 Local Models So You Don't Have To
 
-Ollama just [released](https://github.com/ollama/ollama/releases/tag/v0.14.0) Anthropic API compatibility (support for the `/v1/messages` API) in January 2026, so I decided to try local models in Claude Code.
-
-In practice, this means Claude Code can talk to Ollama directly using the same **Anthropic-style Messages API** it expects. Before this, getting Claude Code to drive local models typically required a compatibility layer / router (e.g. LiteLLM) to translate between API shapes (OpenAI-style backends ↔ Anthropic `/v1/messages`).
-
-- Ollama docs: https://docs.ollama.com/integrations/claude-code
-- Anthropic API compatibility: https://docs.ollama.com/api/anthropic-compatibility
+Ollama [released](https://github.com/ollama/ollama/releases/tag/v0.14.0) Anthropic API compatibility in January 2026, so I tested **18 local models** with Claude Code to find out which ones actually work for agentic coding tasks.
 
 > **TL;DR**
 > 1. **[devstral-small-2](https://ollama.com/library/devstral-small-2) is the winner** - best quality, fastest, zero interventions
-> 2. **You MUST configure context window** - Ollama defaults to 4K; use 64K minimum (GUI slider or Modelfile)
+> 2. **You MUST configure context window** - Ollama defaults to 4K; use 64K minimum
 > 3. **Expect 12-24 min for tasks that take ~2 min with Opus 4.5** - but it works!
+
+- Ollama docs: https://docs.ollama.com/integrations/claude-code
+- Anthropic API compatibility: https://docs.ollama.com/api/anthropic-compatibility
 
 ## My Setup
 
@@ -42,144 +40,58 @@ Ollama docs outline how to set the endpoint, the key and a model. I prefer to co
 alias claude-local='ANTHROPIC_BASE_URL=http://localhost:11434 ANTHROPIC_API_KEY=ollama CLAUDE_CODE_USE_BEDROCK=0 claude --model <model-name>'
 ```
 
-## Model Selection: Finding the Sweet Spot
+## The 18 Models
 
-With hundreds of models on Ollama, how do you pick the right ones? Here's my selection process:
+Here's everything I tested, grouped by outcome:
 
-### Hardware Constraints Define the Ceiling
+### Winners (3)
 
-On my 48GB M4 Pro, the math is straightforward:
+| Model | Size | Result | Why |
+|-------|------|--------|-----|
+| **devstral-small-2:24b** ⭐ | 15GB | ✅ Best | Fastest, highest quality, zero interventions |
+| **qwen3-coder:30b** | 18GB | ✅ Good | Reliable, adapted when tools failed |
+| **granite4:32b-a9b-h** | ~20GB | ✅ OK | Fast but lazy - minimal exploration |
 
-- **Model weights** must fit in RAM
-- **Context window overhead**: large context windows can require significant additional memory
-- **OS and Ollama overhead** takes ~4-8GB
-- **Practical ceiling**: ~35GB for model weights
+### Completed But Problematic (3)
 
-This immediately ruled out flagship models (devstral-2:123b, qwen3-coder:480b) and pushed me toward the 20-32B parameter range.
+| Model | Size | Result | Issue |
+|-------|------|--------|-------|
+| **qwen3:30b** | 18GB | ⚠️ Hallucinated | Zero tool calls, fabricated everything |
+| **nemotron-3-nano:30b** | 24GB | ⚠️ Partial | Needed intervention to finish |
+| **gpt-oss:20b** | 14GB | ⚠️ Low quality | Fast but unreliable output |
 
-### Selection Criteria
+### Failed - Tool Issues (6)
 
-I filtered for models that met these requirements:
+| Model | Size | Failure Mode |
+|-------|------|--------------|
+| **mistral-small3.2:24b** | 15GB | Hallucinated wrong parameter names |
+| **magistral:24b** | 14GB | Narrated tools in text, never invoked |
+| **cogito:32b** | 20GB | Memory thrashing, context stall |
+| **cogito:14b** | 9GB | Hallucinated non-existent tools |
+| **command-r:35b** | 19GB | Nested parameters in wrong schema |
+| **qwen2.5-coder:32b** | - | Stuck on Explore subagent |
 
-1. **Coding-specialized**: General-purpose models underperform on agentic coding tasks
-2. **(Working) Tool calling support**: Required for Claude Code integration - eliminates [deepseek-r1](https://github.com/ollama/ollama/issues/10935), deepseek-coder-v2
-3. **Large context advertised**: Models benefit from at least 128K to handle Claude Code's system prompts + codebase context
-4. **Recent release**: Newer models benefit from advances in instruction following and tool use
-5. **Agentic training**: Bonus points for SWE-Bench or agent-specific fine-tuning
-
-### Critical Caveat: Context Window Configuration
-
-**Ollama's advertised context window ≠ default context window!**
-
-This might be very well known to long-time Ollama users, but the default context length is set to 4096 tokens, regardless of what model cards advertise (128K, 256K or 1M). Claude Code's large system prompts overflow this, causing models to "forget" the task or hallucinate.
-
-**Fix:** You have two options:
-
-**Option 1: Ollama GUI Settings** (simpler)
-
-Ollama's settings panel has a "Context length" slider. Just drag it to 64K or higher - this applies globally to all models.
-
-![Ollama settings showing context length slider](/img/ollama-context-setting.png)
-
-**Option 2: Custom Modelfiles** (more control)
-
-Create model variants with explicit `num_ctx` for per-model configuration:
-
-```bash
-# Create Modelfile
-echo 'FROM devstral-small-2
-PARAMETER num_ctx 131072' > Modelfile.devstral-128k
-
-# Build custom model
-ollama create devstral-128k -f Modelfile.devstral-128k
-```
-
-#### Finding the Minimum Viable Context
-
-I tested devstral-small-2 at different context window sizes using the GUI setting to find the minimum that works:
-
-| Context | Result | Behavior | Cause |
-|---------|--------|----------|-------|
-| 4K | ❌ Failed | Announced task, then stopped - zero tool calls | Context overflow |
-| 8K | ❌ Failed | Same - zero tool calls | Context overflow |
-| 16K | ❌ Failed | Same - zero tool calls | Context overflow |
-| 32K | ⚠️ **Hallucinated** | Started correctly, then invented a bug to fix, edited files, ran tests - completely wrong task | Context overflow |
-| 64K | ✅ Success | Completed task, then tried to run tests (interrupted) | Model behavior* |
-| 128K | ✅ Success | Completed in 17 min, clean stop | ✓ |
-
-The 32K result shows classic context overflow - the model has *just enough* context to start acting, but loses track of the original task mid-execution. From the session trace, it started with *"I'll analyze this codebase and create a CLAUDE.md file"* but then hallucinated an imaginary bug about `manual_cmd_args`, tried to fix it, and even attempted to write tests for the non-existent fix.
-
-**\*A note on the 64K behavior:** The model completed the task correctly, verified its work (reasonable), then tried to run tests (unrequested). This isn't context overflow - the model remembered and completed the original task. [Research suggests](https://jtanruan.medium.com/context-engineering-in-llm-based-agents-d670d6b439bc) this "extra helpful work" is a model training artifact: devstral learned heuristics to verify outputs by running tests. It's being an eager assistant, not a confused one.
-
-**Recommendation:** Use 64K as the minimum for successful task completion. It's faster than 128K (less memory overhead). You may occasionally need to interrupt if the model gets overly helpful, but that's a minor trade-off for the speed gain.
-
-### The Sweet Spot: 15-20GB Models
-
-After testing, a clear pattern emerged:
-
-| Model Size | Typical Params | Fits 48GB? | Performance |
-|------------|---------------|------------|-------------|
-| <10GB | 7-14B | ✅ Easily | Often too weak for complex tasks |
-| **15-20GB** | **24-32B** | **✅ Comfortable** | **Best reliability/quality tradeoff** |
-| 25-40GB | 40-70B | ⚠️ Tight | Context limited, swapping risk |
-| >40GB | 70B+ | ❌ No | Requires 64GB+ or enterprise hardware |
-
-The 15-20GB sweet spot leaves enough headroom for:
-
-- 128K context window
-- System stability without memory pressure
-- Background processes and IDE
-
-**devstral-small-2 (15GB)** hits this sweet spot perfectly - it's the largest model I tested that ran comfortably while still delivering excellent results.
-
-### Models That Didn't Work
+### Failed - No Tool Support (2)
 
 | Model | Issue |
 |-------|-------|
-| qwen2.5-coder:32b | Stuck on Explore subagent, can't adapt |
-| deepseek-r1:32b | No tool support in Ollama Anthropic API |
-| deepseek-coder-v2:16b | No tool support in Ollama Anthropic API |
+| **deepseek-r1:32b** | [No tools in Ollama Anthropic API](https://github.com/ollama/ollama/issues/10935) |
+| **deepseek-coder-v2:16b** | No tools in Ollama Anthropic API |
 
-### Small Models Don't Work
-
-I tested several sub-4B models to find the capability floor:
+### Failed - Too Small (4)
 
 | Model | Size | Behavior |
 |-------|------|----------|
-| functiongemma:270m | 301MB | Refuses all tasks - overly conservative, confused by system prompts |
-| granite4:3b | 2.3GB | Hallucinates without tools - invented Node.js structure for Python project |
-| phi4-mini:3.8b | 2.5GB | Hallucinates tool names (`WebSearch`, `GetCodeContextExa`), asks questions instead of acting |
-| rnj-1:8b | 5.1GB | Silent - produces zero output, can't process system prompts |
-
-The pattern is clear: models under ~15B parameters lack the reasoning capacity to drive agentic tools. They either refuse entirely, fabricate output without using tools, or get confused about what tools exist. Tiny specialist models like FunctionGemma (purpose-built for function calling) refuse to engage entirely - function calling skill without general reasoning is useless for agentic work.
-
-## Models Tested
-
-| Model | Size | Context | Notes |
-|-------|------|---------|-------|
-| **devstral-small-2:24b** | 15GB | 384K | Built for agentic coding, 65.8% SWE-Bench |
-| **qwen3-coder:30b** | 18GB | 256K | SWE-Bench RL trained |
-| **granite4:32b-a9b-h** | ~20GB | 128K | IBM general-purpose, small memory footprint |
-| **qwen3:30b** | 18GB (31GB loaded) | 128K | General-purpose Qwen3 (not coder variant) |
-| **nemotron-3-nano:30b** | 24GB | 1M | MoE, 3.5B active params |
-| **gpt-oss:20b** | 14GB | 128K | Needs larger context config |
-| **mistral-small3.2:24b** | 15GB (37GB loaded) | 128K | General-purpose Mistral with vision |
-| **magistral:24b** | 14GB (23GB loaded) | 39K | New Mistral reasoning model |
-| **cogito:32b** | 20GB (42-64GB loaded) | 128K | Hybrid reasoning model |
-| **cogito:14b** | 9GB (45GB loaded) | 128K | Smaller hybrid reasoning model |
-| **command-r:35b** | 19GB | 128K | Cohere RAG-optimized model |
+| **functiongemma:270m** | 301MB | Refuses everything |
+| **granite4:3b** | 2.3GB | Hallucinates without tools |
+| **phi4-mini:3.8b** | 2.5GB | Invents fake tool names |
+| **rnj-1:8b** | 5.1GB | Silent - zero output |
 
 ## Test Methodology
 
-I came up with a very simple task: create CLAUDE.md instructions using the `/init` command, which is usually the first thing I do in a new repo. This tests:
+I came up with a simple task: create CLAUDE.md instructions using the `/init` command, which is usually the first thing I do in a new repo. It's a good test because the model has to figure out what tools exist, explore multiple files, recognize patterns like build systems and frameworks, and synthesize it all into documentation without making things up.
 
-- Tool discovery and selection
-- Multi-file codebase exploration
-- Pattern recognition (build systems, frameworks)
-- Documentation synthesis
-- Hallucination resistance
-
-The particular repo that I used was `jupyterlab-latex` which was already cloned to my machine.
+The repo I used was `jupyterlab-latex`, already cloned to my machine.
 
 This post is intentionally anecdotal: I only did a single-digit number of runs per model and didn't try to control for prompt wording, run-to-run variance, or toolchain versions. I'm planning to publish this as a very dumb benchmark later, but for now treat the timings and rankings as "field notes", not a rigorous eval.
 
@@ -225,14 +137,9 @@ Bash → Bash → Bash → Read → Bash → Bash → Bash → Read → Read →
 
 No confusion about subagents or tool parameters - it went straight for `Bash` and `Read` to explore the codebase, then used `Write` to create the output.
 
-Output quality was excellent:
-- 180 lines of well-structured documentation
-- Detailed architecture breakdown with specific function names
-- Configuration examples with Python code snippets
-- Communication flow diagram (5-step process)
-- No hallucinations - every file reference was accurate
+The output was 180 lines of documentation with actual function names, Python config examples, and a 5-step communication flow diagram. Every file reference checked out - no hallucinations.
 
-Why did devstral outperform? Likely its purpose-built agentic training - Mistral specifically optimized it for SWE-Bench (65.8% score) and tool-use scenarios, rather than general coding assistance. This shows in its confident, direct tool usage without the subagent confusion that plagued other models.
+Why did devstral outperform? Mistral trained it specifically for SWE-Bench (65.8% score) and tool-use scenarios. You can see it in the tool calls - direct and confident, no subagent confusion.
 
 ```
 Sautéed for 17m 12s
@@ -314,7 +221,7 @@ Sautéed for ~5m
 
 ### `qwen2.5-coder:32b`
 
-**Failed.** Despite having 128K context configured, through multiple attempts it kept reaching for the `Explore` subagent tool and then abruptly stopping without completing any work. Unlike qwen3-coder which recovered when Explore failed, qwen2.5-coder couldn't adapt. This contrast highlights a meaningful difference in instruction-following robustness between the two model generations.
+**Failed.** Despite having 128K context configured, through multiple attempts it kept reaching for the `Explore` subagent tool and then abruptly stopping without completing any work. Unlike qwen3-coder which recovered when Explore failed, qwen2.5-coder couldn't adapt. Same model family, different generation, completely different behavior when things go wrong.
 
 ### `mistral-small3.2:24b`
 
@@ -330,7 +237,7 @@ Sautéed for ~5m
 
 The actual required parameters are `description` and `prompt`. When it received clear error messages explaining this, it simply repeated "I'm going to use the Task tool..." and stopped - unable to self-correct.
 
-This is a different failure mode than hallucinating content (qwen3) or refusing (functiongemma). The model has learned *about* tools but not the actual invocation format. Interestingly, devstral-small-2 (also a Mistral model) works perfectly - the difference is devstral's code/agentic specialization.
+This is a different failure mode than hallucinating content (qwen3) or refusing (functiongemma). The model has learned *about* tools but not the actual invocation format. Worth noting: devstral-small-2 is also a Mistral model and works perfectly - the difference is devstral's agentic specialization.
 
 **Memory:** 37GB loaded at 128K context (vs 15GB on disk).
 
@@ -467,7 +374,7 @@ The more sophisticated failures (wrong params, narration, nested params) suggest
 
 ### How Local Models Compare to Cloud
 
-SWE-bench Verified is the industry standard for evaluating agentic coding - 500 real GitHub issues that models must solve. Here's how local models stack up against frontier cloud offerings:
+SWE-bench Verified is what everyone uses to evaluate agentic coding - 500 real GitHub issues that models must solve. Here's how local models compare to cloud:
 
 **Frontier Cloud Models (Proprietary)**
 
@@ -496,9 +403,9 @@ SWE-bench Verified is the industry standard for evaluating agentic coding - 500 
 | deepseek-r1:32b | 41.4% | ❌ No tools |
 | qwen2.5-coder:32b | 9.0% | ❌ Stuck |
 
-**The gap is surprisingly small.** devstral-small-2 at 68% matches Claude Haiku 4.5 and is only 6-8 points behind frontier models like Claude Opus 4.5. A 24B model running locally achieves what 100B+ models struggle with - proving that specialized agentic training (SWE-Bench fine-tuning) matters more than raw parameter count.
+**The gap is surprisingly small.** devstral-small-2 at 68% matches Claude Haiku 4.5 and trails Opus by only 6-8 points. A 24B model running locally keeps up with 100B+ models - turns out agentic training matters more than size.
 
-SWE-bench score also predicts Claude Code success: models without published scores are typically not coding-focused and failed our tests.
+SWE-bench score also predicts Claude Code success: models without published scores aren't coding-focused and failed my tests.
 
 ### devstral-small-2 vs qwen3-coder
 
@@ -517,31 +424,74 @@ Compare the actual CLAUDE.md files generated by each model. Use the tabs to swit
 
 {{< text-compare files="devstral-small-2,qwen3-coder,nemotron-30b" height="600px" >}}
 
+## What I Discovered Along the Way
+
+These are things I didn't know going in - I figured them out by watching models fail.
+
+### Context Window: The Silent Killer
+
+**Ollama defaults to 4K context, regardless of what model cards advertise (128K, 256K, 1M).**
+
+My first two models (nemotron, gpt-oss) failed mysteriously until I discovered this. Claude Code's system prompts are large - they overflow 4K and cause models to "forget" the task or hallucinate.
+
+**Fix:** Drag Ollama's "Context length" slider to 64K or higher (Settings panel).
+
+![Ollama settings showing context length slider](/img/ollama-context-setting.png)
+
+I tested devstral-small-2 at different context sizes to find the minimum:
+
+| Context | Result | What Happened |
+|---------|--------|---------------|
+| 4-16K | ❌ Failed | Zero tool calls - context overflow |
+| 32K | ⚠️ Hallucinated | Started correctly, then invented a bug to fix |
+| 64K | ✅ Works | Completed task (tried extra work after) |
+| 128K | ✅ Works | Clean completion |
+
+**64K is the minimum.** The 32K failure is insidious - the model has *just enough* context to start acting, but loses track mid-execution and hallucinates.
+
+### The 15-20GB Sweet Spot
+
+After all the testing, a pattern emerged for my 48GB machine:
+
+| Model Size | Fits? | Reality |
+|------------|-------|---------|
+| <10GB (7-14B) | ✅ | Too weak for complex tasks |
+| **15-20GB (24-32B)** | ✅ | **Best tradeoff** |
+| 25-40GB (40-70B) | ⚠️ | Context limited, swapping risk |
+| >40GB (70B+) | ❌ | Need 64GB+ RAM |
+
+devstral-small-2 at 15GB hits this perfectly - leaves room for 128K context + OS + IDE without memory pressure.
+
+### Small Models Just Can't
+
+Models under ~15B parameters lack the reasoning to drive agentic tools. They either:
+- **Refuse** (functiongemma) - too conservative, confused by prompts
+- **Hallucinate content** (granite4:3b) - skip tools, fabricate everything
+- **Hallucinate tools** (phi4-mini) - invent non-existent tool names
+- **Go silent** (rnj-1:8b) - zero output
+
+Function calling skill without general reasoning is useless for agentic work.
+
 ## Conclusions
 
-We are getting the first glimpse of what local models can achieve in agentic tools on local machines. The promise of privacy, low cost and freedom of choice is very compelling. **devstral-small-2 proves that local models can now complete agentic coding tasks reliably** - though still orders of magnitude slower than frontier cloud models.
+Local models can do real agentic work now. devstral-small-2 completed the task reliably, with no hand-holding. It's slower than cloud (17 min vs 2 min), but it runs on my laptop with no API calls.
 
 ### Key Takeaways
 
-1. **devstral-small-2 is the current best choice** - Purpose-built for agentic coding, smallest footprint, best results
-2. **The local-cloud gap is smaller than you'd think** - devstral-small-2 (68% SWE-bench) matches Claude Haiku 4.5 and trails Opus by only ~8 points
-3. **Context window is critical** - Must configure 64K+ context or models fail silently (Ollama defaults to 4K)
-4. **SWE-bench predicts success** - Models without published SWE-bench scores are not coding-focused and fail at agentic tasks
-5. **Speed is painful** - 17-24 minutes for a simple task vs ~2 minutes with Claude Opus 4.5
-6. **Check tool support first** - Not all models support function calling in Ollama's Anthropic API
+1. **devstral-small-2 wins** - best results, smallest footprint, built for this
+2. **The gap is smaller than I expected** - 68% SWE-bench matches Haiku, trails Opus by 8 points
+3. **Context window matters** - Ollama defaults to 4K; bump it to 64K or watch models hallucinate
+4. **SWE-bench predicts success** - no published score usually means it won't work
+5. **Speed hurts** - 17-24 minutes vs 2 minutes on cloud
+6. **Check tool support first** - not all models work with Ollama's Anthropic API
 
 ### What Works
 
-- **devstral-small-2**: fastest, best quality, zero interventions
-- **qwen3-coder**: reliable backup option
-- Tool calling infrastructure works when model supports it
-- Ollama 0.14.0's Anthropic API compatibility makes setup easy
+devstral-small-2 and qwen3-coder both work reliably. The tool calling infrastructure is solid when the model supports it. Ollama 0.14.0 makes setup easy - no more LiteLLM translation layer.
 
 ### What Doesn't Work (Yet)
 
-- Models hallucinate when context overflows (fabricated URLs, wrong repo names)
-- Many models fail to complete multi-step agentic tasks without intervention
-- Performance is 8-12x slower than cloud models
+Most models can't finish multi-step agentic tasks without help. Context overflow causes hallucinations (fabricated URLs, wrong repo names). And 8-12x slower than cloud is hard to ignore.
 
 ### Recommendation
 
@@ -573,15 +523,3 @@ echo "alias claude-local='ANTHROPIC_BASE_URL=http://localhost:11434 ANTHROPIC_AP
 source ~/.zshrc
 claude-local
 ```
-
-I'm curious about hybrid approaches - could local and cloud models work together? Imagine local models handling file exploration and codebase indexing, while cloud models tackle complex reasoning and synthesis. The speed gap might close faster than we think.
-
-### A Concrete Hybrid Workflow
-
-One workflow I'd like to try:
-
-- Local model: do the "mechanical" work (enumerate repo, run ripgrep searches, open relevant files, summarize each file/function into short notes, capture build/test commands)
-- Local model: produce a compact "context pack" (file tree + key excerpts + a dependency/config summary + open questions)
-- Cloud model: use the context pack to do the expensive thinking (design decisions, refactors, writing patches, producing polished docs)
-- Cloud model: hand back a minimal file list / patch plan
-- Local model: execute the plan with tools and iterate, only escalating back to cloud when reasoning gets stuck
