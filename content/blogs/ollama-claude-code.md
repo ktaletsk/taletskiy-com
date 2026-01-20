@@ -49,11 +49,11 @@ Here's everything I tested, sorted by size:
 | magistral:24b | 14GB | Jun 2025 | - | Reasoning |
 | gpt-oss:20b | 14GB | Aug 2025 | - | General-purpose |
 | cogito:14b | 9GB | Jul 2025 | - | Hybrid reasoning |
+| deepseek-coder-v2:16b | 8.9GB | Jun 2024 | - | Coding (no tools) |
 | rnj-1:8b | 5.1GB | Dec 2025 | 20.8% | General-purpose |
 | phi4-mini:3.8b | 2.5GB | Feb 2025 | - | General-purpose |
 | granite4:3b | 2.1GB | Oct 2025 | - | General-purpose |
 | functiongemma:270m | 301MB | Dec 2025 | - | Function calling |
-| deepseek-coder-v2:16b | - | - | - | Coding (no tools) |
 
 ## Experiments
 
