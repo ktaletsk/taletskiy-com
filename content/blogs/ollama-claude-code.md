@@ -1,5 +1,5 @@
 ---
-title: Ollama Models in Claude Code
+title: Claude Code with Ollama models on M4 MacBook Pro
 date: 2026-01-15
 draft: false
 summary: "A little experiment evaluating local models for agentic tasks in Claude Code"
@@ -14,7 +14,7 @@ image: /img/ollama-claude-code-hero.png
 Ollama [released](https://github.com/ollama/ollama/releases/tag/v0.14.0) Anthropic API compatibility in January 2026, so I tested **18 local models** with Claude Code to find out which ones actually work for agentic coding tasks.
 
 > **TL;DR**
-> 1. [`devstral-small-2:24b`](https://ollama.com/library/devstral-small-2) is the winner** - best quality, fastest, zero interventions
+> 1. [`devstral-small-2:24b`](https://ollama.com/library/devstral-small-2) is the winner - best quality, fastest, zero interventions
 > 2. **You MUST configure context window** - Ollama defaults to 4K; use 64K minimum
 > 3. **Expect 12-24 min for tasks that take ~2 min with Opus 4.5** - but it works!
 
@@ -57,7 +57,7 @@ Here's everything I tested, sorted by size:
 
 ## Experiments
 
-I chose a very simple task: run `/init` on a repo (`jupyterlab-latex`) to generate CLAUDE.md, which is normally the first thing I do in a new repo. It is though deceptively hard - the model has to discover tools, explore multiple files,  and synthesize documentation without hallucinating. One or two runs per model; treat results as field notes.
+I chose a very simple task: run `/init` on a repo (`jupyterlab-latex`) to generate CLAUDE.md, which is normally the first thing I do in a new repo. It's deceptively hard though - the model has to discover tools, explore multiple files,  and synthesize documentation without hallucinating. One or two runs per model; treat results as field notes.
 
 My first two models (nemotron, gpt-oss) used Ollama's default context window - which is how I discovered the 4K limit issue. After that, I set context to 64K+ in Ollama's.
 
@@ -101,7 +101,7 @@ No confusion about subagents or tool parameters - it went straight for `Bash` an
 
 The output was 180 lines of documentation with actual function names, Python config examples, and a 5-step communication flow diagram. Every file reference checked out - no hallucinations.
 
-Why did devstral outperform? Mistral trained it specifically for SWE-Bench (65.8% score) and tool-use scenarios. You can see it in the tool calls - direct and confident, no subagent confusion.
+Why did devstral outperform? Mistral trained it specifically for SWE-Bench (68.0% score) and tool-use scenarios. You can see it in the tool calls - direct and confident, no subagent confusion.
 
 ```
 Sautéed for 17m 12s
@@ -330,7 +330,7 @@ More context didn't help - it just gave the model more runway to keep failing th
 | phi4-mini:3.8b | - | Invents fake tool names |
 | rnj-1:8b | - | Silent, zero output |
 
-*granite4:32b referenced files it never verified existed
+*granite4:32b referenced files it never verified existed. It "works" in the sense that it completes the task and produces usable output, but you'd want to review it before trusting it. devstral and qwen3-coder are trustworthy out of the box.
 
 **Winner: devstral-small-2** - best quality, smallest footprint, zero interventions.
 
