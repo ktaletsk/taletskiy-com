@@ -1,5 +1,5 @@
 ---
-title: Claude Code with Ollama models on M4 MacBook Pro
+title: Which local models actually work with Claude Code on a 48GB MacBook Pro?
 date: 2026-01-15
 draft: false
 summary: "A little experiment evaluating local models for agentic tasks in Claude Code"
@@ -57,9 +57,9 @@ Here's everything I tested, sorted by size:
 
 ## Experiments
 
-I chose a very simple task: run `/init` on a repo (`jupyterlab-latex`) to generate CLAUDE.md, which is normally the first thing I do in a new repo. It's deceptively hard though - the model has to discover tools, explore multiple files,  and synthesize documentation without hallucinating. One or two runs per model; treat results as field notes.
+I chose a very simple task: run `/init` on a repo (`jupyterlab-latex`) to generate CLAUDE.md, which is normally the first thing I do in a new repo. It's deceptively hard though - the model has to discover tools, explore multiple files, and synthesize documentation without hallucinating. One or two runs per model; treat results as field notes.
 
-My first two models (nemotron, gpt-oss) used Ollama's default context window - which is how I discovered the 4K limit issue. After that, I set context to 64K+ in Ollama's.
+My first two models (nemotron, gpt-oss) used Ollama's default context window - which is how I discovered the 4K limit issue. After that, I set context to 64K+ in Ollama's settings.
 
 ### `nemotron-3-nano:30b`
 
