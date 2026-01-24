@@ -169,8 +169,8 @@ date = "2024"
 [[params.blogs]]
     title = "No Code, No Problem"
     date = "2025-12-11"
-    summary = "Exploring no-code and low-code approaches to problem-solving"
-    tags = ["No-Code", "Low-Code", "Quarto"]
+    summary = "PyData Boston 2025 lightning talk on non-code contributions to Open Source"
+    tags = ["Open Source", "PyData", "Lightning Talk", "Community"]
     link = "https://ktaletsk.quarto.pub/no-code-no-problem"
 
 [[params.voluntary]]
