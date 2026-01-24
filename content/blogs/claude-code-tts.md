@@ -14,6 +14,11 @@ I spend a lot of time in Claude Code. Reading responses while coding is fine, bu
 
 **Note:** The upstream project uses `tac` (GNU coreutils) which doesn't exist on macOS. My fork replaces it with `tail -r`.
 
+<video width="100%" controls>
+  <source src="/videos/claude-code-tts.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 ## Audio Ducking
 
 With TTS working, I had a new problem: I like music while coding. Claude talking over music is hard to hear.
