@@ -7,7 +7,7 @@ tags: ["JupyterLab", "projspec", "fsspec", "Anaconda", "extensions"]
 image: /img/jupyter-projspec-hero.png
 ---
 
-<!-- TODO: Add hero image / screenshot of the extension in action -->
+![jupyter-projspec sidebar and chips in JupyterLab](/img/jupyter-projspec-hero.png)
 
 ## What is Jupyter Projspec?
 
@@ -36,8 +36,6 @@ The missing piece was surfacing this information where people actually work — 
 ## How It Works
 
 The extension adds two UI elements to JupyterLab: a **sidebar panel** that displays project information in a collapsible tree view, and **colored badge chips** in the file browser that show detected project types at a glance. When you navigate to a directory, it calls the projspec Python backend to scan and identify what's there, then renders the results.
-
-<!-- TODO: Add screenshot/GIF of the sidebar in action -->
 
 ### Projspec's Three Concepts
 
