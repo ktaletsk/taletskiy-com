@@ -1,7 +1,7 @@
 ---
 title: "Jupyter Projspec: Bringing Project Discovery to JupyterLab"
 date: 2026-02-06
-draft: true
+draft: false
 summary: "A JupyterLab extension that automatically discovers and displays project structure — built in collaboration with Martin Durant and Rosio Reyes at Anaconda"
 tags: ["JupyterLab", "projspec", "fsspec", "Anaconda", "extensions"]
 image: /img/jupyter-projspec-hero.png
@@ -19,9 +19,7 @@ Think of it as an intelligent project inspector for JupyterLab.
 
 ## Featured on Anaconda's Podcast
 
-Today, jupyter-projspec was featured on Anaconda's [Numerically Speaking](https://www.youtube.com/watch?v=tF5XIH4sTyM) podcast! The segment starts around the ~27 minute mark.
-
-<!-- TODO: Update timestamp when livestream ends -->
+Today, jupyter-projspec was featured on Anaconda's [Numerically Speaking](https://www.youtube.com/live/tF5XIH4sTyM?si=3aQ_wMLz0eeY_Z0b&t=1486) podcast! The segment starts around the 24:46 mark.
 
 {{< youtube tF5XIH4sTyM >}}
 
