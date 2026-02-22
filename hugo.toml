@@ -54,20 +54,27 @@ date = "2024"
     role = "Senior Software Engineer, OSS - Jupyter"
     period = "September 2025 - Present"
     logo = "anaconda.png"
-    description = "Contributing to open source Jupyter projects including JupyterLab, and developing gator and jupyter-fsspec extensions to enhance the Jupyter ecosystem."
+    description = "Contributing to JupyterLab core and developing extensions to enhance the Jupyter ecosystem."
+    responsibilities = [
+        "Contribute to JupyterLab core (15k+ stars): file browser UX improvements for file sorting and uploads",
+        "Won Hack Days at Anaconda's 2026 Company Kickoff (top 5 of 29 teams) — originated, co-built, and presented Skills Hub, an enterprise trust layer for AI agent skills",
+        "Develop and maintain mamba-gator (275+ stars), a conda/mamba package management extension; led UX modernization and end-to-end testing",
+        "Lead development of jupyter-projspec, a project specification standard for JupyterLab",
+        "Published local LLM benchmarking analysis (Claude Code + Ollama), influencing Anaconda Desktop's AI strategy"
+    ]
 
 [[params.experience]]
     company = "Orange Bricks"
     role = "Founder"
     period = "January 2024 - Present"
     logo = "/img/company/orbrx.png"
-    description = "Operating as product studio and consulting agency: building integrated JupyterLab platform while providing enterprise Jupyter/JupyterHub consulting services."
+    description = "Product studio and consulting agency building open-source JupyterLab tools and delivering enterprise consulting in Jupyter/JupyterHub infrastructure and AI agent architecture."
     responsibilities = [
         "Released Auto Dashboards, an open-source JupyterLab extension that converts notebooks into interactive, stakeholder-ready dashboards with side-by-side preview",
-        "Built JupyterLab Marketplace, an open-source, community-run extensions catalog surfacing real-world signals from PyPI (BigQuery) and GitHub to make discovery easier",
-        "Contributed core features to Mito AI (2.5k+ GitHub stars), including prompt engineering, intelligent code completions, debugging agents, and chat interfaces",
-        "Launched a cost-effective demo JupyterHub to showcase Mito AI, improving conversion from 2.59% to 11.2% by eliminating installation friction with pre-configured environment",
-        "Developing suite of JupyterLab extensions for enhanced developer productivity: smart workspace launcher, code quality and security tools, package management, API testing client, notebook governance, and containerized development environments"
+        "Built and maintain JupyterLab Marketplace, an open-source, community-run extensions catalog surfacing real-world signals from PyPI (BigQuery) and GitHub to make discovery easier",
+        "Developing JupyterLab extensions and AI-powered developer tools: smart workspace launcher, code quality and security tools",
+        "SpinTwo (client): Designing multi-agent AI architecture for an HPC automation platform serving NIH and NASA; defining inter-agent contracts, evaluation frameworks, and safety guardrails for a LangGraph-based system automating design, provisioning, and monitoring of cloud/hybrid HPC environments",
+        "Mito AI (client): Contributed core features to Mito AI (2.5k+ GitHub stars) — prompt engineering, intelligent code completions, debugging agents, and chat interfaces; launched a demo JupyterHub improving conversion from 2.59% to 11.2% by eliminating installation friction"
     ]
 
 [[params.experience]]
