@@ -4,18 +4,18 @@ date: 2026-02-21
 draft: false
 summary: "How our team won Judges' Recognition at Anaconda's CKO 2026 hackathon in Portugal by building an enterprise trust layer for AI agent skills."
 tags: ["Anaconda", "Agent Skills", "AI Governance", "Hackathon", "Python", "Conda"]
+video: "/videos/skills-hub-demo.mp4"
 ---
 
 *How our team won Judges' Recognition at Anaconda's CKO 2026 hackathon in Portugal*
 
-<video width="100%" controls>
-  <source src="/videos/skills-hub-demo.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
 ## The setup
 
 Every year, Anaconda brings the entire company together for CKO — part all-hands, part hackathon, part team building. This year it was in Portugal. The hackathon gives teams three days to build something from scratch, and this year I joined a team of eight to tackle a problem I'd been thinking about for months.
+
+![The CKO 2026 venue — round tables, green-lit stage, and the whole company together in Portugal](/img/IMG_4936.jpeg)
+
+![The hackathon structure: three days, three paths to glory](/img/IMG_4935.jpeg)
 
 ## The problem: AI assistants don't know your rules
 
@@ -59,9 +59,13 @@ Then the pivot: "But how does this skill reach every developer on your team safe
 
 The whole thing ran just under two minutes. The judges gave us Judges' Recognition (honorable mention), which we were very happy with given the quality of the other projects.
 
+![At the CKO 2026 stage](/img/IMG_4940.jpeg)
+
 ## How we built it: AI-assisted spec-driven development
 
 The meta-story of the hackathon was almost as interesting as the project itself. We built the entire thing using AI-driven spec-driven development with open-source tools — primarily OpenCode and SpecKit.
+
+![Early brainstorming — the whiteboard where Skills Hub took shape](/img/IMG_4939.jpeg)
 
 The approach: before writing any code, you write a spec. The spec directory contains a formal specification, research notes, a data model, an implementation plan, and a task breakdown. Then the AI coding assistant implements against that spec. Each feature lived on a dedicated branch matching its spec number, with PRs reviewed and merged to main.
 
@@ -92,6 +96,8 @@ We mentioned it as a teaser in the closing ("what we didn't show today") and it 
 Whether Skills Hub becomes an Anaconda product is above my pay grade. But the gap is real: enterprises need a trust layer between the wild west of community skills and the developers who use them. Someone is going to build it. I'm glad we got to prototype what it could look like.
 
 ## Thanks
+
+![Part of the Skills Hub team at CKO 2026](/img/IMG_4994.jpeg)
 
 This was a genuine team effort. Anil Kulkarni led the project and kept us focused. Albert DeFusco built the backend and CLI infrastructure. Denis Dupeyron contributed the upload pipeline and source type system. Max Huang built the skill-gen pipeline. Anna Ratner designed the UI. Arisha Mays implemented it. And we had a great time in Portugal.
 
