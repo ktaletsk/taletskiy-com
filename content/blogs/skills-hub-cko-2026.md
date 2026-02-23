@@ -5,6 +5,7 @@ draft: false
 summary: "How our team won Judges' Recognition at Anaconda's CKO 2026 hackathon in Portugal by building an enterprise trust layer for AI agent skills."
 tags: ["Anaconda", "Agent Skills", "AI Governance", "Hackathon", "Python", "Conda"]
 video: "/videos/skills-hub-demo.mp4"
+image: "/img/skills-hub-thumb.jpeg"
 ---
 
 *How our team won Judges' Recognition at Anaconda's CKO 2026 hackathon in Portugal*
