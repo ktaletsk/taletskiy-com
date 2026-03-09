@@ -1,3 +1,4 @@
-public/
+public/*
+!public/resume.pdf
 .hugo_build.lock
 .DS_Store
