@@ -1,30 +1,94 @@
 <section class="mt-10 rounded-2xl border border-gray-800 bg-[#0f0f0f] p-5 md:p-6">
-    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-        <div class="max-w-2xl">
-            <h2 class="text-lg font-semibold text-gray-100">Jupyter Newsletter</h2>
-            <p class="mt-1 text-sm text-gray-400">Get detailed extension reviews and updates on Jupyter ecosystem.</p>
-        </div>
+    <div class="mx-auto max-w-3xl">
+        <h2 class="text-xl font-semibold text-gray-100">Jupyter Newsletter</h2>
+        <p class="mt-2 text-sm text-gray-400">Get detailed extension reviews and updates on the Jupyter ecosystem.</p>
+
         <form
-            action="https://buttondown.com/api/emails/embed-subscribe/ktaletsk"
+            action="/.netlify/functions/subscribe"
             method="post"
-            class="flex w-full flex-col gap-3 md:max-w-xl md:flex-row"
+            class="mt-5 flex flex-col gap-3 sm:flex-row"
+            data-newsletter-form
         >
-            <input type="hidden" name="embed" value="1">
-            <label class="sr-only" for="bd-email">Email address</label>
+            <input type="hidden" name="redirect_url" value="{{ .Permalink }}">
+            <input type="hidden" name="tag" value="jupyter-newsletter">
+            <label class="sr-only" for="newsletter-email">Email address</label>
             <input
-                id="bd-email"
+                id="newsletter-email"
                 type="email"
                 name="email"
                 placeholder="you@example.com"
                 required
                 class="min-w-0 flex-1 rounded-xl border border-gray-700 bg-[#121212] px-4 py-3 text-gray-100 placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"
             >
+            <input
+                type="text"
+                name="company"
+                tabindex="-1"
+                autocomplete="off"
+                class="hidden"
+                aria-hidden="true"
+            >
             <button
                 type="submit"
-                class="rounded-xl bg-blue-600 px-5 py-3 font-medium text-white transition-colors hover:bg-blue-500"
+                class="rounded-xl bg-blue-600 px-5 py-3 font-medium text-white transition-colors hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-70"
             >
                 Subscribe
             </button>
         </form>
+
+        <p class="mt-3 text-sm text-gray-500" data-newsletter-status aria-live="polite"></p>
+        <p class="mt-2 text-xs text-gray-500">After signing up, Buttondown may send a confirmation email to verify your address.</p>
     </div>
 </section>
+
+<script>
+(() => {
+    const forms = document.querySelectorAll('[data-newsletter-form]');
+    forms.forEach((form) => {
+        if (form.dataset.newsletterBound === 'true') {
+            return;
+        }
+        form.dataset.newsletterBound = 'true';
+
+        const status = form.parentElement.querySelector('[data-newsletter-status]');
+        const button = form.querySelector('button[type="submit"]');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            button.disabled = true;
+            if (status) {
+                status.textContent = 'Submitting...';
+                status.className = 'mt-3 text-sm text-gray-400';
+            }
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: new URLSearchParams(new FormData(form)).toString(),
+                });
+                const payload = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(payload.message || 'Subscription failed.');
+                }
+
+                form.reset();
+                if (status) {
+                    status.textContent = payload.message || 'Check your inbox to confirm your subscription.';
+                    status.className = 'mt-3 text-sm text-green-400';
+                }
+            } catch (error) {
+                if (status) {
+                    status.textContent = error.message || 'Subscription failed. Please try again.';
+                    status.className = 'mt-3 text-sm text-red-400';
+                }
+            } finally {
+                button.disabled = false;
+            }
+        });
+    });
+})();
+</script>

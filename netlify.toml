@@ -2,6 +2,9 @@
   publish = "public"
   command = "hugo"
 
+[functions]
+  directory = "netlify/functions"
+
 [context.production.environment]
   HUGO_VERSION = "0.145.0"
   HUGO_ENV = "production"
