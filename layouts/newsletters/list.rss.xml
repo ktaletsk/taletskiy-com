@@ -16,6 +16,7 @@
     {{- range $pages.ByDate.Reverse }}
     {{- $page := . -}}
     {{- $summary := cond (isset .Params "summary") .Params.summary (.Summary | plainify) -}}
+    {{- $hero := cond (isset .Params "image") (.Params.image | absURL) "" -}}
     {{- $content := .Content
         | replaceRE `(?s)<iframe.*?</iframe>` ""
         | replaceRE `(?s)<script.*?</script>` ""
@@ -27,11 +28,10 @@
       <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
       <guid>{{ .Permalink }}</guid>
       {{ printf "<description><![CDATA[<p>%s</p><p><a href=\"%s\">Read the full post on taletskiy.com</a></p>]]></description>" $summary .Permalink | safeHTML }}
-      <content:encoded>{{ printf "<![CDATA[%s<p>%s</p>%s<p><a href=\"%s\">Read the full post on taletskiy.com</a></p>]]>"
-        (cond (isset .Params "image") (printf "<p><img src=\"%s\" alt=\"%s\"></p>" (.Params.image | absURL) $page.Title) "")
-        $summary
+      <content:encoded>{{ printf "<![CDATA[%s%s]]>"
+        (cond (and (ne $hero "") (not (in $content $hero))) (printf "<p><img src=\"%s\" alt=\"%s\"></p>" $hero $page.Title) "")
         $content
-        .Permalink | safeHTML }}</content:encoded>
+        | safeHTML }}</content:encoded>
     </item>
     {{- end }}
   </channel>

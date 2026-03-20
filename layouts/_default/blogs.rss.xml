@@ -1,0 +1,59 @@
+{{- $regularPosts := slice -}}
+{{- range where .Site.RegularPages "Section" "blogs" -}}
+  {{- $summary := cond (isset .Params "summary") .Params.summary (.Summary | plainify) -}}
+  {{- $content := .Content
+      | replaceRE `(?s)<iframe.*?</iframe>` ""
+      | replaceRE `(?s)<script.*?</script>` ""
+      | replaceRE `src="/` (printf "src=\"%s" .Site.BaseURL)
+      | replaceRE `href="/` (printf "href=\"%s" .Site.BaseURL) -}}
+  {{- $post := dict
+      "title" .Title
+      "date" .Date
+      "link" .Permalink
+      "summary" $summary
+      "content" $content
+      "image" .Params.image
+      "isExternal" false -}}
+  {{- $regularPosts = $regularPosts | append $post -}}
+{{- end -}}
+
+{{- $externalPosts := slice -}}
+{{- range .Site.Params.blogs -}}
+  {{- $date := time .date -}}
+  {{- $post := dict
+      "title" .title
+      "date" $date
+      "link" .link
+      "summary" .summary
+      "content" ""
+      "image" .image
+      "isExternal" true -}}
+  {{- $externalPosts = $externalPosts | append $post -}}
+{{- end -}}
+
+{{- $allPosts := sort ($regularPosts | append $externalPosts) "date" "desc" -}}
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>{{ .Title }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>All blog posts from Konstantin Taletskiy.</description>
+    <generator>Hugo</generator>
+    <language>{{ .Site.Language.LanguageCode }}</language>
+    <atom:link href="{{ .Permalink }}index.xml" rel="self" type="application/rss+xml"></atom:link>
+    {{- range $allPosts }}
+    <item>
+      <title>{{ .title }}</title>
+      <link>{{ .link }}</link>
+      <pubDate>{{ .date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
+      <guid>{{ .link }}</guid>
+      {{ printf "<description><![CDATA[<p>%s</p><p><a href=\"%s\">Read the full post on taletskiy.com</a></p>]]></description>" .summary .link | safeHTML }}
+      <content:encoded>{{ printf "<![CDATA[%s%s%s<p><a href=\"%s\">Read the full post on taletskiy.com</a></p>]]>"
+        (cond .image (printf "<p><img src=\"%s\" alt=\"%s\"></p>" (.image | absURL) .title) "")
+        (cond .summary (printf "<p>%s</p>" .summary) "")
+        .content
+        .link | safeHTML }}</content:encoded>
+    </item>
+    {{- end }}
+  </channel>
+</rss>
