@@ -1,6 +1,6 @@
 ---
 title: "Test Post: Buttondown RSS Check"
-date: 2026-03-20
+date: 2026-03-21
 draft: false
 summary: "A temporary test post to verify the Jupyter newsletter RSS-to-email flow."
 tags: ["Jupyter", "Newsletter", "Testing"]
