@@ -1,0 +1,30 @@
+<section class="mt-10 rounded-2xl border border-gray-800 bg-[#0f0f0f] p-5 md:p-6">
+    <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <div class="max-w-2xl">
+            <h2 class="text-lg font-semibold text-gray-100">JupyterLab Extensions Newsletter</h2>
+            <p class="mt-1 text-sm text-gray-400">Get monthly updates on new JupyterLab extensions.</p>
+        </div>
+        <form
+            action="https://buttondown.com/api/emails/embed-subscribe/ktaletsk"
+            method="post"
+            class="flex w-full flex-col gap-3 md:max-w-xl md:flex-row"
+        >
+            <input type="hidden" name="embed" value="1">
+            <label class="sr-only" for="bd-email">Email address</label>
+            <input
+                id="bd-email"
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+                class="min-w-0 flex-1 rounded-xl border border-gray-700 bg-[#121212] px-4 py-3 text-gray-100 placeholder:text-gray-500 focus:border-blue-500 focus:outline-none"
+            >
+            <button
+                type="submit"
+                class="rounded-xl bg-blue-600 px-5 py-3 font-medium text-white transition-colors hover:bg-blue-500"
+            >
+                Subscribe
+            </button>
+        </form>
+    </div>
+</section>

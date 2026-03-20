@@ -1,0 +1,32 @@
+{{ define "main" }}
+<div class="w-full px-4 md:w-11/12 lg:w-5/6 xl:w-4/5 max-w-6xl mx-auto py-12">
+    <div class="max-w-5xl mx-auto p-4 md:p-8 border border-gray-800 rounded-2xl bg-[#121212]">
+        <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">{{ .Title }}</h1>
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 mb-8 text-gray-400 text-sm md:text-base">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+            <div class="flex flex-wrap gap-2">
+                {{ range .Params.tags }}
+                <span class="px-2 py-1 bg-gray-800 rounded-md text-xs font-medium text-gray-300">{{ . }}</span>
+                {{ end }}
+            </div>
+        </div>
+
+        {{ with .Params.video }}
+        <div class="mb-8 rounded-xl overflow-hidden">
+            <video width="100%" controls>
+                <source src="{{ . }}" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        {{ end }}
+
+        <div class="prose prose-invert max-w-none">
+            {{ .Content }}
+        </div>
+
+        {{ if eq .Params.newsletter "jupyterlab-extensions" }}
+        {{ partial "newsletter-signup.html" . }}
+        {{ end }}
+    </div>
+</div>
+{{ end }}

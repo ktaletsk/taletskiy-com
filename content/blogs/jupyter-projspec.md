@@ -4,6 +4,7 @@ date: 2026-02-06
 draft: false
 summary: "A JupyterLab extension that automatically discovers and displays project structure — built in collaboration with Martin Durant and Rosio Reyes at Anaconda"
 tags: ["JupyterLab", "projspec", "fsspec", "Anaconda", "extensions"]
+newsletter: jupyterlab-extensions
 image: /img/jupyter-projspec-hero.png
 ---
 
