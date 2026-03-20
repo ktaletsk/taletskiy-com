@@ -16,7 +16,11 @@
     {{- range $pages.ByDate.Reverse }}
     {{- $page := . -}}
     {{- $summary := cond (isset .Params "summary") .Params.summary (.Summary | plainify) -}}
-    {{- $content := .Content | replaceRE `(?s)<iframe.*?</iframe>` "" | replaceRE `(?s)<script.*?</script>` "" -}}
+    {{- $content := .Content
+        | replaceRE `(?s)<iframe.*?</iframe>` ""
+        | replaceRE `(?s)<script.*?</script>` ""
+        | replaceRE `src="/` (printf "src=\"%s" .Site.BaseURL)
+        | replaceRE `href="/` (printf "href=\"%s" .Site.BaseURL) -}}
     <item>
       <title>{{ .Title }}</title>
       <link>{{ .Permalink }}</link>
