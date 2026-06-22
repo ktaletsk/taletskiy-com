@@ -5,7 +5,7 @@ draft: false
 summary: "Introducing Wanderland: an interactive 2D educational playground for Python, inspired by Swift Playgrounds and built with marimo and anywidget."
 tags: ["JupyterLab", "AI", "Claude Code", "Marimo", "extensions"]
 newsletter: jupyterlab-extensions
-image: /img/swift-playgrounds-learn-to-code.png
+image: /img/wanderland-hero.png
 ---
 
 I was at the Apple Store waiting for my Genius Bar appointment when I noticed a class happening on the big screen: [Swift Playgrounds](https://developer.apple.com/swift-playgrounds/).
