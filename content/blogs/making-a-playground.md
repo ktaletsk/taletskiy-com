@@ -4,6 +4,7 @@ date: 2026-06-29
 draft: false
 summary: "Vincent from marimo posted a couple of Shorts that show Wanderland as a notebook-native playground, down to the tiny dark mode details."
 tags: ["marimo", "Wanderland", "Python", "notebooks", "anywidget"]
+image: /img/wanderland-in-marimo-vincent-short.jpg
 ---
 
 A few weeks ago I wrote about [Wanderland]({{< ref "wanderland.md" >}}), my attempt to bring the Swift Playgrounds feeling into Python notebooks. The goal was pretty simple: code on one side, an immediate little world on the other, and enough delight that a beginner wants to keep poking at it.
